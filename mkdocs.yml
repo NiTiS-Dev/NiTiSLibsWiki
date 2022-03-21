@@ -1,0 +1,12 @@
+site_name: NiTiSCore Wiki
+site_author: NiTiS-Dev
+site_description: Official Wiki of NiTiSCore libraries
+site_url: https://nitis-dev.github.io/nitis-core-wiki/
+repo_url: https://github.com/NiTiS-Dev/nitis-core-wiki
+
+theme:
+  name: material
+  features:
+  - navigation.tracking
+  - content.tabs.link
+  - search.hightlight
