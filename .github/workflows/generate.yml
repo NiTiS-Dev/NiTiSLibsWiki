@@ -1,3 +1,14 @@
 name: Generate Docks
 
+on:
+  push:
+    branches:
+    - "singleton"
     
+  schedule:
+  - cron: "30 4 * * *"
+  workflow_dispatch:
+  
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
