@@ -12,3 +12,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@2
+  
