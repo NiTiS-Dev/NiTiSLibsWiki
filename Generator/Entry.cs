@@ -21,7 +21,7 @@ public static class Entry
 			Console.WriteLine(el);
         }
 		Console.WriteLine($"Global directory are: {dir}");
-		Directory docs = new(dir.Path, "docs");
+		Directory docs = new(System.IO.Path.Combine(dir.Path, "docs"));
 		Directory templates = new(dir.Path, "templates");
 		foreach(var asm in NiTiSCoreLib.BasicLibs) {
 			foreach(var type in asm.GetTypes()) {
@@ -30,7 +30,7 @@ public static class Entry
 				if (type == typeof(NiTiSCoreLib)) continue;
 				DocType dtype = new(type);
 				string path = dtype.Namespace.Replace('.', '/');
-				File docFile = new(dir, System.IO.Path.Combine("docs", path, dtype.ClearName + ".md"));
+				File docFile = new(dir, System.IO.Path.Combine(docs.Path, path, dtype.ClearName + ".md"));
 				File template = new(templates, dtype.TemplateType.GetSpecialName());
 				template.ThrowIfNotExists();
 				string doc = template.ReadText();
