@@ -25,7 +25,7 @@ jobs:
     - name: Install DotNet v6
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '6.x'
     - name: Install Python Required Modules
       run: python3 -m pip install -r ./requirements.txt
     - name: Run Pages Generator
