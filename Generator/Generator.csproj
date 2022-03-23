@@ -1,12 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <OutputType>Exe</OutputType>
-    <ImplicitUsings>enable</ImplicitUsings>
+	<Optimize>false</Optimize>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="NiTiSCore" />
+	<PackageReference Include="NiTiSCore" Version="2.*"/>
   </ItemGroup>
 </Project>
