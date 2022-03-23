@@ -11,14 +11,18 @@ public static class Entry
 		Console.WriteLine("NiTiS Core Lib V:" + NiTiSCoreLib.BasicLibs[0].GetName().Version);
 		Console.WriteLine("Date Time " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 		Directory dir = Directory.GetCurrentDirectory();
-		dir = new(dir.Path.Split(System.IO.Path.DirectorySeparatorChar).SkipLast(0).ToArray());
+		dir = new(dir.Path.Split(System.IO.Path.DirectorySeparatorChar).SkipLast(1).ToArray());
+		foreach (var el in dir.GetDirectories())
+		{
+			Console.WriteLine(el);
+		}
+		foreach (var el in dir.GetFiles())
+        {
+			Console.WriteLine(el);
+        }
 		Console.WriteLine($"Global directory are: {dir}");
 		Directory docs = new(dir.Path, "docs");
 		Directory templates = new(dir.Path, "templates");
-#if RELEASE
-		docs.ThrowIfNotExists();
-		templates.ThrowIfNotExists();
-#endif
 		foreach(var asm in NiTiSCoreLib.BasicLibs) {
 			foreach(var type in asm.GetTypes()) {
 				if (type.FullName.StartsWith("System") || type.FullName.StartsWith("Microsoft")) continue; //Skip internal classes
