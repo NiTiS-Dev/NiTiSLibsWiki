@@ -10,11 +10,14 @@ public static class Entry
 	public static void Main() {
 		Console.WriteLine("NiTiS Core Lib V:" + NiTiSCoreLib.BasicLibs[0].GetName().Version);
 		Console.WriteLine("Date Time " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-		Directory dir = new(String.Concat(System.IO.Directory.GetParent(Directory.GetCurrentDirectory().Path).FullName.Split(System.IO.Path.PathSeparator).SkipLast(1)));
+		Directory dir = Directory.GetCurrentDirectory();
+		dir = new(dir.Path, "..");
 		Directory docs = new(dir.Path, "docs");
 		Directory templates = new(dir.Path, "templates");
+#if RELEASE
 		docs.ThrowIfNotExists();
 		templates.ThrowIfNotExists();
+#endif
 		foreach(var asm in NiTiSCoreLib.BasicLibs) {
 			foreach(var type in asm.GetTypes()) {
 				if (type.FullName.StartsWith("System") || type.FullName.StartsWith("Microsoft")) continue; //Skip internal classes
@@ -28,9 +31,9 @@ public static class Entry
 				string doc = template.ReadText();
 				Dictionary<string, string> dict = new()
 				{
-					{ "MEMBER_NAME", dtype.ClearName },
-					{ "MEMBER_NAMESPACE", dtype.Namespace },
-					{ "MEMBER_ASSEMBLY", dtype.Type.Assembly.GetName().Name + " V:" + dtype.Type.Assembly.GetName().Version },
+					["MEMBER_NAME"] = dtype.ClearName,
+					["MEMBER_NAMESPACE"] = dtype.Namespace,
+					["MEMBER_ASSEMBLY"] = dtype.Type.Assembly.GetName().Name + " V:" + dtype.Type.Assembly.GetName().Version,
 				};
                 foreach (var repl in dict)
                 {
