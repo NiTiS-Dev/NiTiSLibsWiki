@@ -30,8 +30,7 @@ jobs:
       run: python3 -m pip install -r ./requirements.txt
     - name: Run Pages Generator
       run: |
-        cd Generator
-        dotnet run -c Release --no-logo
+        dotnet run Generator\*.csproj -c Release --no-logo
     - name: Generate docs
       run: |
         mkdocs build
