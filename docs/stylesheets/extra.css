@@ -1,4 +1,4 @@
 [data-md-color-scheme="dark-mode"] {
-  filter: hue-rotate(110deg);
-  --md-default-bg-color: hsla(140, 10%, 60%, 0.65);
+  --md-hue: 110;
+  --md-default-bg-color: hsla(var(--md-hue), 10%, 60%, 0.65);
 }
