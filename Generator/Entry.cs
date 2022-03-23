@@ -10,7 +10,7 @@ public static class Entry
 	public static void Main() {
 		Console.WriteLine("NiTiS Core Lib V:" + NiTiSCoreLib.BasicLibs[0].GetName().Version);
 		Console.WriteLine("Date Time " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-		Directory dir = Directory.GetCurrentDirectory();
+		Directory dir = new(System.IO.Directory.GetParent(Directory.GetCurrentDirectory().Path).FullName);
 		Directory docs = new(dir.Path, "docs");
 		Directory templates = new(dir.Path, "templates");
 		docs.ThrowIfNotExists();
