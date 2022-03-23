@@ -11,7 +11,7 @@ public static class Entry
 		Console.WriteLine("NiTiS Core Lib V:" + NiTiSCoreLib.BasicLibs[0].GetName().Version);
 		Console.WriteLine("Date Time " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 		Directory dir = Directory.GetCurrentDirectory();
-		dir = new(dir.Path.Split(System.IO.Path.DirectorySeparatorChar).SkipLast(1).ToArray());
+		dir = new(dir.Separate().SkipLast(1).ToArray());
 		foreach (var el in dir.GetDirectories())
 		{
 			Console.WriteLine(el);
