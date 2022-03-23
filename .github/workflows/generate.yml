@@ -28,6 +28,10 @@ jobs:
         dotnet-version: '6.0.x'
     - name: Install Python Required Modules
       run: python3 -m pip install -r ./requirements.txt
+    - name: Run Pages Generator
+      run: |
+      cd Generator
+      dotnet run -c Release --no-logo
     - name: Generate docs
       run: |
         mkdocs build
