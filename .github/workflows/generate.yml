@@ -6,7 +6,7 @@ on:
     - "singleton"
     
   schedule:
-  - cron: "30 4 1 *2 *"
+  - cron: "30 4 * * *"
   workflow_dispatch:
   
 jobs:
@@ -30,7 +30,8 @@ jobs:
       run: python3 -m pip install -r ./requirements.txt
     - name: Run Pages Generator
       run: |
-        dotnet run Generator\*.csproj -c Release --no-logo
+        ls Generator/
+        dotnet run --project Generator/Generator.csproj -c Release --no-logo
     - name: Generate docs
       run: |
         mkdocs build
