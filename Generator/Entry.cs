@@ -36,6 +36,7 @@ public static class Entry
                 {
 					doc.Replace(repl.Key, repl.Value);
                 }
+				docFile.Parent.Create();
 				docFile.Create();
 				docFile.WriteText(doc);
 			}
