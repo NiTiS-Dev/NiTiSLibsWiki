@@ -1,4 +1,4 @@
 [data-md-color-scheme="dark-mode"] {
-  --md-hue: 110;
+  --md-hue: 140;
   --md-default-bg-color: hsla(var(--md-hue), 1%, 30%, 0.65);
 }
