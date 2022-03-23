@@ -10,16 +10,7 @@ public static class Entry
 	public static void Main() {
 		Console.WriteLine("NiTiS Core Lib V:" + NiTiSCoreLib.BasicLibs[0].GetName().Version);
 		Console.WriteLine("Date Time " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-		Directory dir = Directory.GetCurrentDirectory();
-		dir = new(dir.Separate().SkipLast(1).ToArray());
-		foreach (var el in dir.GetDirectories())
-		{
-			Console.WriteLine(el);
-		}
-		foreach (var el in dir.GetFiles())
-        {
-			Console.WriteLine(el);
-        }
+		Directory dir = new(Directory.GetCurrentDirectory().Separate().SkipLast(1).ToArray());
 		Console.WriteLine($"Global directory are: {dir}");
 		Directory docs = new(System.IO.Path.Combine(dir.Path, "docs"));
 		Directory templates = new(dir.Path, "templates");
