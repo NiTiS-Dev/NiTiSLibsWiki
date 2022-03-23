@@ -5,6 +5,19 @@ site_url: https://nitis-dev.github.io/nitis-core-wiki/
 repo_url: https://github.com/NiTiS-Dev/nitis-core-wiki
 
 theme:
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-4
+        name: Switch to dark mode
+      primary: blue gray
+      accent: deep purple
+    - media: "(prefers-color-scheme: light)"
+      scheme: dark-mode
+      toggle:
+        icon: material/brightness-7
+        name: Switch to light mode
   name: material
   features:
   - navigation.tracking
