@@ -15,6 +15,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
+    - name: Install DotNet v6
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.x'
+    - name: Run Pages Generator
+      run: |
+        pwd
+        ls
+        dotnet run --project Generator/Generator.csproj -c Release --no-logo
+    
     - name: Setup Python v3
       uses: actions/setup-python@v2
       with:
@@ -22,18 +32,12 @@ jobs:
     - name: Python Update
       run: |
         python3 -m pip install --upgrade pip
-    - name: Install DotNet v6
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '6.x'
     - name: Install Python Required Modules
       run: python3 -m pip install -r ./requirements.txt
-    - name: Run Pages Generator
-      run: |
-        dotnet run --project Generator/Generator.csproj -c Release --no-logo
     - name: Generate docs
       run: |
         mkdocs build
+    
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
