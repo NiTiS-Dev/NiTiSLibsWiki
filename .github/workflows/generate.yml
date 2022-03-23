@@ -6,7 +6,7 @@ on:
     - "singleton"
     
   schedule:
-  - cron: "30 4 1 *2 *"
+  - cron: "30 4"
   workflow_dispatch:
   
 jobs:
