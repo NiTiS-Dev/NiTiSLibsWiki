@@ -11,9 +11,7 @@ public static class Entry
 	public static void Main() {
 		Console.WriteLine("NiTiS Core Lib V:" + NiTiSCoreLib.BasicLibs[0].GetName().Version);
 		Console.WriteLine("Date Time " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-		Directory dir = new(
-			RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? "/" : "" +
-			String.Concat(Directory.GetCurrentDirectory().Separate().SkipLast(0).ToArray()));
+		Directory dir = Directory.GetCurrentDirectory();
 		Console.WriteLine($"Global directory are: {dir}");
 		Directory docs = new(System.IO.Path.Combine(dir.Path, "docs"));
 		Directory templates = new(dir.Path, "templates");
