@@ -34,7 +34,7 @@ public static class Entry
 				};
                 foreach (var repl in dict)
                 {
-					doc.Replace(repl.Key, repl.Value);
+					doc = doc.Replace(repl.Key, repl.Value);
                 }
 				docFile.Parent.Create();
 				docFile.Create();
