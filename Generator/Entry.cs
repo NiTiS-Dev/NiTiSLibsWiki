@@ -40,6 +40,7 @@ public static class Entry
                 {
 					doc.Replace(repl.Key, repl.Value);
                 }
+				docFile.Create();
 				docFile.WriteText(doc);
 			}
 			
