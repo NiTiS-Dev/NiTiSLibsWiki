@@ -2,11 +2,43 @@ site_name: NiTiSCore Wiki
 site_author: NiTiS-Dev
 site_description: Official Wiki of NiTiSCore libraries
 site_url: https://nitis-dev.github.io/nitis-core-wiki/
+
+repo_name: NiTiS-Dev/nitis-core-wiki
 repo_url: https://github.com/NiTiS-Dev/nitis-core-wiki
 
+edit_uri: edit/singleton/docs
+
+copyright: Copyright &copy; 2022 NiTiS-Dev
+
+plugins:
+  - git-revision-date
+
 theme:
+  icon:
+    repo: material/github
+    logo: logo
+  font:
+    code: Red Hat Mono
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to dark mode
+      primary: blue gray
+      accent: deep purple
+    - media: "(prefers-color-scheme: dark)"
+      scheme: dark-mode
+      toggle:
+        icon: material/lightbulb
+        name: Switch to light mode
+      primary: red
+      accent: red
   name: material
   features:
   - navigation.tracking
+  - navigation.instant
   - content.tabs.link
   - search.hightlight
+extra_css:
+  - stylesheets/extra.css

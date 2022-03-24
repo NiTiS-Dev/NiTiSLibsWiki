@@ -1,0 +1,9 @@
+[data-md-color-scheme="dark-mode"] {
+  --md-hue: 25;
+  --md-default-bg-color: hsla(var(--md-hue), 5%, 21%, 1);
+  --md-default-fg-color: hsla(var(--md-hue), 0%, 95%, 1);
+  --md-default-fg-color--light: hsla(var(--md-hue), 0%, 95%, 1);
+  --md-code-hl-color: rgba(66, 135, 255, .15);
+  --md-code-fg-color: white;
+  --md-code-bg-color: hsla(var(--md-hue), 5%, 15%, 1);
+}
