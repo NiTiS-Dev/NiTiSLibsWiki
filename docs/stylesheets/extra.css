@@ -18,4 +18,6 @@
   --md-code-hl-comment-color: var(--md-default-fg-color--light);
   --md-code-hl-generic-color: var(--md-default-fg-color--light);
   --md-code-hl-variable-color: var(--md-default-fg-color--light);
+  --md-footer-bg-color: hsla(var(--md-hue),15%,12%,0.87);
+  --md-footer-bg-color--dark: hsla(var(--md-hue),15%,10%,1);
 }
