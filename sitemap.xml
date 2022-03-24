@@ -16,6 +16,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Additions/Functions/</loc>
+         <lastmod>2022-03-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Additions/Strings/</loc>
          <lastmod>2022-03-24</lastmod>
          <changefreq>daily</changefreq>
@@ -77,6 +82,11 @@
     </url>
     <url>
          <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/OpenType/</loc>
+         <lastmod>2022-03-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Path/</loc>
          <lastmod>2022-03-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
