@@ -4,15 +4,6 @@
   --md-default-fg-color: hsla(var(--md-hue), 0%, 95%, 1);
   --md-default-fg-color--light: hsla(var(--md-hue), 0%, 95%, 1);
   --md-code-hl-color: rgba(66, 135, 255, .15);
-  //--md-code-hl-number-color: #e6695b;
-  
-  //--md-primary-fg-color: #eb4949;
-  //--md-primary-fg-color--light: #f07171;
-  //--md-primary-fg-color--dark: #bf2a2a;
-  
-  //--md-primary-bg-color: #fff;
-  //--md-primary-bg-color--light: hsla(0, 0%, 100%, 0.7);
-}
-h1 {
-  font-wieght: bold;
+  --md-code-fg-color: white;
+  --md-code-bg-color: hsla(var(--md-hue), 5%, 15%, 1);
 }
