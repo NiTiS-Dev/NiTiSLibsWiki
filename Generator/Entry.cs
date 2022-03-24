@@ -28,7 +28,7 @@ public static class Entry
 				
 				DocType dtype = new(type);
 				string path = dtype.Namespace.Replace('.', '/');
-				File docFile = new(dir, System.IO.Path.Combine(docs.Path, path, dtype.ClearName + ".md"));
+				File docFile = new(dir, System.IO.Path.Combine(docs.Path, path, dtype.Type.Name + ".md"));
 				File template = new(templates, dtype.TemplateType.GetSpecialName());
 				template.ThrowIfNotExists();
 				string doc = template.ReadText();
@@ -46,6 +46,7 @@ public static class Entry
 				docFile.Parent.Create();
 				docFile.Create();
 				docFile.WriteText(doc);
+				Console.WriteLine($"Generated {docFile}");
 			}
 		}
 	}

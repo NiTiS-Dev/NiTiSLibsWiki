@@ -21,15 +21,21 @@ public class DocType
         }
         else
         {
-            text += Type.IsSealed ? "sealed " : "";
-            text += Type.IsAbstract ? "abstract " : "";
+            if (Type.IsSealed)
+            {
+                text += "sealed ";
+            }
+            else
+            {
+                text += Type.IsAbstract ? "abstract " : "";
+            }
             text += Type.IsValueType ? "struct " : "class ";
         }
         return text;
     }
     public string Namespace => this.Type?.Namespace ?? "";
     public string ClearName => GetNameByType(this.Type);
-    public string Name => GetNameByType(this.Type);
+    public string Name => GetNameWithGenerics(this.Type);
     public string FullClearName => $"{Namespace}.{ClearName}";
     public string FullName => $"{Namespace}.{Name}";
     public Template TemplateType
@@ -53,7 +59,14 @@ public class DocType
             return GetNameByType(type);
         }
     }
-    public static string GetNameByType(SType type) => String.Concat(type.Name.Split('`').SkipLast(1));
+    public static string GetNameByType(SType type)
+    {
+        if (type.IsGenericType)
+        {
+            return String.Concat(type.Name.Split('`').SkipLast(1));
+        }
+        return type.Name;
+    }
     public static string GetGenericNames(SType[] generics)
     {
         string text = "";
