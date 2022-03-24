@@ -20,7 +20,7 @@ public class DocType
             string get = GetModifer(v.GetGetMethod());
             string set = GetModifer(v.GetSetMethod());
             if (get is null && set is null) continue;
-            builder.Append($"|{v.PropertyType}|{v.Name}|{get ?? "none"}|{set ?? "none"}|\n");
+            builder.Append($"|{GetNameWithGenerics(v.PropertyType)}|{v.Name}|{get ?? "none"}|{set ?? "none"}|\n");
         }
 
         return builder.ToString();
