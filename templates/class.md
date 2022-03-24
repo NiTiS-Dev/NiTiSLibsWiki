@@ -11,8 +11,8 @@ MEMBER_INCODE
 MEMBER_FIELDS
 
 ## Properties
-|Type|Getter|Setter|
-|-|:-:|:-:| 
+|Type|Name|Getter|Setter|
+|-|:-:|:-:|:-:| 
 MEMBER_PROP
 
 ## Methods
