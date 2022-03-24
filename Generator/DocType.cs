@@ -46,14 +46,14 @@ public class DocType
     {
         if (type.IsGenericType)
         {
-            return type.Name + GetGenericNames(type.GenericTypeArguments);
+            return GetNameByType(type) + GetGenericNames(type.GetGenericArguments());
         }
         else
         {
-            return type.Name;
+            return GetNameByType(type);
         }
     }
-    public static string GetNameByType(SType type) => type.Name;
+    public static string GetNameByType(SType type) => String.Concat(type.Name.Split('`').SkipLast(1));
     public static string GetGenericNames(SType[] generics)
     {
         string text = "";
