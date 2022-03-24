@@ -6,7 +6,7 @@ MEMBER_INCODE
 ```
 
 ## Fields
-|Access|Type|Default Value|
+|Access|Type|Name|
 |-|:-|:-:| 
 MEMBER_FIELDS
 
