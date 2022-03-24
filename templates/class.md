@@ -1,7 +1,7 @@
 # MEMBER_NAME
-   ``` csharp
-   MEMBER_INCODE
-   ```
+```csharp
+MEMBER_INCODE
+```
 Namespace: MEMBER_NAMESPACE
 
 |Access|Field Type|Default Value|
