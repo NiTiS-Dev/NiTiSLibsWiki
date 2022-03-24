@@ -9,7 +9,6 @@ using System.Reflection;
 
 public static class Entry
 {
-	public static readonly Dictionary<string, DocType> DocTypes = new();
 	public static void Main() {
 		//Entry logging
 		Console.WriteLine("NiTiS Core Lib V:" + NiTiSCoreLib.BasicLibs[0].GetName().Version);
@@ -22,8 +21,9 @@ public static class Entry
 
 		foreach(var asm in NiTiSCoreLib.BasicLibs) {
 			foreach(var type in asm.GetTypes()) {
-				if (type.FullName.StartsWith("System") || type.FullName.StartsWith("Microsoft")) continue; //Skip internal classes
-				if (type.FullName.Contains("__") || type.FullName.Contains('+')) continue; //Skip display classes
+				//Ignore internal types
+				if (type.FullName.StartsWith("System") || type.FullName.StartsWith("Microsoft")) continue;
+				if (type.FullName.Contains("__") || type.FullName.Contains('+')) continue;
 				if (type == typeof(NiTiSCoreLib)) continue;
 				
 				DocType dtype = new(type);
@@ -38,6 +38,7 @@ public static class Entry
 					["MEMBER_NAME"] = dtype.ClearName,
 					["MEMBER_INCODE"] = dtype.GenerateIncode(),
 					["MEMBER_ASSEMBLY"] = dtype.Type.Assembly.GetName().Name + " V:" + dtype.Type.Assembly.GetName().Version,
+					["MEMBER_FIELDS"] = dtype.GenerateFields(),
 				};
                 foreach (var repl in dict)
                 {
