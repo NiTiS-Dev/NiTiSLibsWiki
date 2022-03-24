@@ -17,7 +17,10 @@ public class DocType
 
         foreach(var v in editor.GetProperityEnumerable())
         {
-            builder.Append($"|{v.GetType()}|{GetModifer(v.GetGetMethod())}|{GetModifer(v.GetSetMethod())}|\n");
+            string get = GetModifer(v.GetGetMethod());
+            string set = GetModifer(v.GetSetMethod());
+            if (get is null && set is null) continue;
+            builder.Append($"|{v.PropertyType}|{v.Name}|{get ?? "none"}|{set ?? "none"}|\n");
         }
 
         return builder.ToString();
@@ -41,7 +44,7 @@ public class DocType
     }
     public string GetModifer(MethodInfo member)
     {
-        if (member is null) return "none";
+        if (member is null) return null;
         if (member.Attributes.HasFlag(MethodAttributes.Private)) return "private";
         if (member.Attributes.HasFlag(MethodAttributes.Public)) return "public";
         if (member.Attributes.HasFlag(MethodAttributes.Family)) return "protected";
