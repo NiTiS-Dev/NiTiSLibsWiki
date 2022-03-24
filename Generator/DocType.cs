@@ -21,6 +21,8 @@ public class DocType
                 Console.WriteLine($"Skip Compiler Field {i.Name}");
                 continue;
             }
+            if (i.Name.StartsWith("m_")) continue;
+            if (i.FieldType.Name == "RuntimeType" || i.Name == "GenericParameterCountAny") continue;
             builder.Append($"|{GetModifer(i)}|{i.FieldType}|{i.Name}|\n");
         }
         return builder.ToString();
