@@ -1,13 +1,21 @@
 # MEMBER_NAME
-```cs
+#### Namespace: MEMBER_NAMESPACE
+
+```csharp
 MEMBER_INCODE
 ```
-Namespace: MEMBER_NAMESPACE
 
-|Access|Field Type|Default Value|
+## Fields
+|Access|Type|Default Value|
 |-|:-|:-:| 
 MEMBER_FIELDS
 
-|Access|Return Type|Name|Arguments|
+## Properties
+|Type|Getter|Setter|
+|-|:-:|:-:| 
+MEMBER_PROP
+
+## Methods
+|Access|Type|Name|Arguments|
 |-|:-|:-:|:-:|
 MEMBER_FUNCTIONS
