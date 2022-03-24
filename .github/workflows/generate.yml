@@ -21,8 +21,6 @@ jobs:
         dotnet-version: '6.x'
     - name: Run Pages Generator
       run: |
-        pwd
-        ls
         dotnet run --project Generator/Generator.csproj -c Release --no-logo
     
     - name: Setup Python v3
