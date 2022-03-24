@@ -6,32 +6,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Additions/EnumInfo/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Additions/EnumInfoAttribute/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Additions/Functions/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Additions/Strings/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Collections/EnumCollection%601/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Collections/SingletonManager/</loc>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Collections/EnumCollection/</loc>
          <lastmod>2022-03-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -41,97 +16,27 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Collections/Generic/HardTypedDictonary%601/</loc>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Collections/Generic/SmartDictonary/</loc>
          <lastmod>2022-03-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Collections/Generic/SmartDictonary%602/</loc>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Collections/Generic/Twosome/</loc>
          <lastmod>2022-03-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Collections/Generic/Twosome%602/</loc>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Interaction/Link/</loc>
          <lastmod>2022-03-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Collections/Pseudo/RangeInt/</loc>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Interaction/OperationResult/</loc>
          <lastmod>2022-03-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Directory/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/File/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/FileAccess/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/IStorageElement/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/OpenType/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Path/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/StorageElementAlreadyExistsException/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/StorageElementNotExistsExeption/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Interaction/Link%601/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Interaction/OperationResult%601/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Interaction/ReadonlyLink%601/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Interaction/Result/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/ArithmeticProgression/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Axis/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/GeometricProgression/</loc>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Interaction/ReadonlyLink/</loc>
          <lastmod>2022-03-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -141,32 +46,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/IProgression%601/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/VectorMath/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/WichmannRandom/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Ranged/IRangedVar%601/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Ranged/RangedFloat/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Ranged/RangedInt/</loc>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Ranged/IRangedVar/</loc>
          <lastmod>2022-03-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -176,57 +56,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Vectors/IVector%601/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Vectors/Vector1D/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Vectors/Vector1DInt/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Vectors/Vector2D/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Vectors/Vector2DInt/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Vectors/Vector3D/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Vectors/Vector3DInt/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Vectors/Vector4D/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Vectors/Vector4DInt/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Reflection/InstanceEditor/</loc>
-         <lastmod>2022-03-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Reflection/TypeEditor%601/</loc>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Reflection/TypeEditor/</loc>
          <lastmod>2022-03-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
