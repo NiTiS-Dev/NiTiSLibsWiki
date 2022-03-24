@@ -32,6 +32,7 @@ theme:
   name: material
   features:
   - navigation.tracking
+  - navigation.instant
   - content.tabs.link
   - search.hightlight
 extra_css:
