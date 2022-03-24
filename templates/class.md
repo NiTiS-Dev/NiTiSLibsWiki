@@ -1,8 +1,9 @@
 # MEMBER_NAME
+#### Namespace: MEMBER_NAMESPACE
+
 ```csharp
 MEMBER_INCODE
 ```
-Namespace: MEMBER_NAMESPACE
 
 ## Fields
 |Access|Type|Default Value|
