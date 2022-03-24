@@ -1,5 +1,6 @@
 ﻿using NiTiS.Reflection;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -14,9 +15,16 @@ public class DocType
     {
         StringBuilder builder = new StringBuilder();
         InstanceEditor editor = new(Type);
-
-        foreach(var v in editor.GetProperityEnumerable())
+        InstanceEditor editorObj = new(new object());
+        List<string> skipList = new();
+        foreach(var i in editorObj.GetProperityEnumerable())
         {
+            skipList.Add(i.Name);
+        }
+
+        foreach (var v in editor.GetProperityEnumerable())
+        {
+            if (skipList.Contains(v.Name)) continue;
             string get = GetModifer(v.GetGetMethod());
             string set = GetModifer(v.GetSetMethod());
             if (get is null && set is null) continue;
