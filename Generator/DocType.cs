@@ -10,6 +10,18 @@ public class DocType
 {
     public SType Type { get; private set; }
     public DocType(SType type) => this.Type = type;
+    public string GenerateProps()
+    {
+        StringBuilder builder = new StringBuilder();
+        InstanceEditor editor = new(Type);
+
+        foreach(var v in editor.GetProperityEnumerable())
+        {
+            builder.Append($"|{v.GetType()}|{GetModifer(v.GetGetMethod())}|{GetModifer(v.GetSetMethod())}|\n");
+        }
+
+        return builder.ToString();
+    }
     public string GenerateFields()
     {
         StringBuilder builder = new();
@@ -26,6 +38,14 @@ public class DocType
             builder.Append($"|{GetModifer(i)}|{i.FieldType}|{i.Name}|\n");
         }
         return builder.ToString();
+    }
+    public string GetModifer(MethodInfo member)
+    {
+        if (member is null) return "none";
+        if (member.Attributes.HasFlag(MethodAttributes.Private)) return "private";
+        if (member.Attributes.HasFlag(MethodAttributes.Public)) return "public";
+        if (member.Attributes.HasFlag(MethodAttributes.Family)) return "protected";
+        return "hiden";
     }
     public string GetModifer(FieldInfo member)
     {

@@ -39,6 +39,7 @@ public static class Entry
 					["MEMBER_INCODE"] = dtype.GenerateIncode(),
 					["MEMBER_ASSEMBLY"] = dtype.Type.Assembly.GetName().Name + " V:" + dtype.Type.Assembly.GetName().Version,
 					["MEMBER_FIELDS"] = dtype.GenerateFields(),
+					["MEMBER_PROP"] = dtype.GenerateProps(),
 				};
                 foreach (var repl in dict)
                 {
