@@ -4,7 +4,14 @@ site_description: Official Wiki of NiTiSCore libraries
 site_url: https://nitis-dev.github.io/nitis-core-wiki/
 repo_url: https://github.com/NiTiS-Dev/nitis-core-wiki
 
+edit_uri: edit/singleton/docs
+
+plugins:
+  - git-revision-date
+
 theme:
+  icon:
+    repo: material/github
   font:
     code: Red Hat Mono
   palette:
