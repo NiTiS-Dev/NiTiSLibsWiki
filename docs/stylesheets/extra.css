@@ -1,4 +1,14 @@
 [data-md-color-scheme="dark-mode"] {
   --md-hue: 140;
-  --md-default-bg-color: hsla(var(--md-hue), 1%, 30%, 0.65);
+  --md-default-bg-color: hsla(var(--md-hue), 15%, 21%, 1);
+  --md-default-fg-color: hsla(var(--md-hue), 75%, 95%, 1);
+  --md-code-hl-color: rgba(66, 135, 255, .15);
+  --md-code-hl-number-color: #e6695b;
+  
+  --md-primary-fg-color: #eb4949;
+  --md-primary-fg-color--light: #f07171;
+  --md-primary-fg-color--dark: #bf2a2a;
+  
+  --md-primary-bg-color: #fff;
+  --md-primary-bg-color--light: hsla(0, 0%, 100%, 0.7);
 }
