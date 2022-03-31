@@ -28,10 +28,8 @@ public static class Entry
 	}
 	public static void WriteDoc(string content, File to)
 	{
-#if RELEASE
-			to.Create(true);
-			to.WriteText(content);
-#endif
+		to.Create(true);
+		to.WriteText(content);
 		Console.WriteLine($"File Created: {to.Path}");
 	}
 	static Entry()

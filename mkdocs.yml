@@ -16,9 +16,7 @@ plugins:
 theme:
   icon:
     repo: material/github
-    logo: logo
-  font:
-    code: Red Hat Mono
+    logo: images/nitis-core-icon.svg
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
