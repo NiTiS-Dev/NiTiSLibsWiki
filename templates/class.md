@@ -1,4 +1,4 @@
-# %SHORT_NAME Class
+# **%SHORT_NAME Class**
 
 # Definition
 <h6 class="namespace">Namepsace: %NAMESPACE</h6>
