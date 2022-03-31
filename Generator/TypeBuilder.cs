@@ -69,10 +69,7 @@ public sealed class TypeBuilder
 			["NAMESPACE"] = new(() => type.Namespace),
 			["ASSEMBLY"] = new(() => type.Assembly.GetName().Name),
 		};
-		foreach(KeyValuePair<string, Lazy<string>> pair in keys)
-		{
-			temp = temp.Replace("%" + pair.Key, pair.Value.Value);
-		};
+		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
 	}
 	private void GenClass()
@@ -85,11 +82,15 @@ public sealed class TypeBuilder
 			["NAMESPACE"] = new(() => type.Namespace),
 			["ASSEMBLY"] = new(() => type.Assembly.GetName().Name),
 		};
+		UseKeys(ref temp, keys);
+		Entry.WriteDoc(temp, type);
+	}
+	private void UseKeys(ref string content, Dictionary<string, Lazy<string>> keys)
+	{
 		foreach (KeyValuePair<string, Lazy<string>> pair in keys)
 		{
-			temp = temp.Replace(pair.Key, pair.Value.Value);
+			content = content.Replace("%" + pair.Key, pair.Value.Value);
 		};
-		Entry.WriteDoc(temp, type);
 	}
 	static TypeBuilder()
 	{
