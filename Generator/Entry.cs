@@ -23,7 +23,7 @@ public static class Entry
 	}
 	public static void WriteDoc(string content, Type type)
 	{
-		File to = new(DOCS, type.FullName.Replace('.', Path.DirectorySeparator).Replace('`', '-'));
+		File to = new(DOCS, type.FullName.Replace('.', Path.DirectorySeparator).Replace('`', '-') + ".md");
 		WriteDoc(content, to);
 	}
 	public static void WriteDoc(string content, File to)
