@@ -6,6 +6,8 @@ using NiTiS.IO;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Reflection;
+using Namotion.Reflection;
+using System.Xml.Linq;
 
 public static class Entry
 {
@@ -21,6 +23,8 @@ public static class Entry
 
 		foreach(var asm in NiTiSCoreLib.BasicLibs) {
 			foreach(var type in asm.GetTypes()) {
+				XElement xmlDoc = type.GetXmlDocsElement();
+				if (xmlDoc is not null) Console.WriteLine(xmlDoc);
 				//Ignore internal types
 				if (type.FullName.StartsWith("System") || type.FullName.StartsWith("Microsoft")) continue;
 				if (type.FullName.Contains("__") || type.FullName.Contains('+')) continue;

@@ -1,11 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <OutputType>Exe</OutputType>
-	<Optimize>false</Optimize>
-  </PropertyGroup>
-  <ItemGroup>
-	<PackageReference Include="NiTiSCore" Version="2.*"/>
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<OutputType>Exe</OutputType>
+		<Optimize>false</Optimize>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Namotion.Reflection" Version="2.0.10" />
+		<PackageReference Include="NiTiSCore" Version="2.*" />
+	</ItemGroup>
+
 </Project>
