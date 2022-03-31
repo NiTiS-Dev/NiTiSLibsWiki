@@ -16,7 +16,7 @@ plugins:
 theme:
   icon:
     repo: material/github
-    logo: images/nitis-core-icon.svg
+    logo: images/nitis-core-icon
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
