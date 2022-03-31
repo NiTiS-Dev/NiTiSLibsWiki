@@ -16,8 +16,8 @@ plugins:
 theme:
   name: material
   repo: material/github
-  logo: images/nitis-core-icon
-  favicon: images/nitis-core-icon
+  logo: images/nitis-core-icon.svg
+  favicon: images/nitis-core-icon.svg
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
