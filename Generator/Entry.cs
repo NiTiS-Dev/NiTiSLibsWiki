@@ -1,59 +1,43 @@
+using Generator;
 using NiTiS.Core;
-using System;
-using System.Linq;
-using NiTiS.Additions;
 using NiTiS.IO;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using System;
 using System.Reflection;
-using Namotion.Reflection;
-using System.Xml.Linq;
 
 public static class Entry
 {
+	public static readonly Directory GLOBAL, DOCS, TEMPLATES;
+	public const string SITE_URL = @"https://nitis-dev.github.io/nitis-core-wiki/";
 	public static void Main() {
 		//Entry logging
 		Console.WriteLine("NiTiS Core Lib V:" + NiTiSCoreLib.BasicLibs[0].GetName().Version);
 		Console.WriteLine("Date Time " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-		//Setup working directories
-		Directory dir = Directory.GetCurrentDirectory();
-		Directory docs = new(System.IO.Path.Combine(dir.Path, "docs"));
-		Directory templates = new(dir.Path, "templates");
-		Console.WriteLine($"Global directory are: {dir}");
-
-		foreach(var asm in NiTiSCoreLib.BasicLibs) {
-			foreach(var type in asm.GetTypes()) {
-				XElement xmlDoc = type.GetXmlDocsElement();
-				if (xmlDoc is not null) Console.WriteLine(xmlDoc);
-				//Ignore internal types
-				if (type.FullName.StartsWith("System") || type.FullName.StartsWith("Microsoft")) continue;
-				if (type.FullName.Contains("__") || type.FullName.Contains('+')) continue;
-				if (type == typeof(NiTiSCoreLib)) continue;
-				
-				DocType dtype = new(type);
-				string path = dtype.Namespace.Replace('.', '/');
-				File docFile = new(dir, System.IO.Path.Combine(docs.Path, path, dtype.Type.Name + ".md"));
-				File template = new(templates, dtype.TemplateType.GetSpecialName());
-				template.ThrowIfNotExists();
-				string doc = template.ReadText();
-				Dictionary<string, string> dict = new()
-				{
-					["MEMBER_NAMESPACE"] = dtype.Namespace,
-					["MEMBER_NAME"] = dtype.ClearName,
-					["MEMBER_INCODE"] = dtype.GenerateIncode(),
-					["MEMBER_ASSEMBLY"] = dtype.Type.Assembly.GetName().Name + " V:" + dtype.Type.Assembly.GetName().Version,
-					["MEMBER_FIELDS"] = dtype.GenerateFields(),
-					["MEMBER_PROP"] = dtype.GenerateProps(),
-				};
-                foreach (var repl in dict)
-                {
-					doc = doc.Replace(repl.Key, repl.Value);
-                }
-				docFile.Parent.Create();
-				docFile.Create();
-				docFile.WriteText(doc);
-				Console.WriteLine($"Generated {docFile}");
-			}
+		Console.WriteLine($"Global directory are: {GLOBAL}");
+		
+		// Each of all NiTiS.Core assemblys  
+		foreach (Assembly asm in NiTiSCoreLib.BasicLibs)
+		{
+			AssemblyParser parser = new(asm);
+			parser.GenDocs();
 		}
+	}
+	public static void WriteDoc(string content, Type type)
+	{
+		File to = new(DOCS, type.FullName.Replace('.', Path.DirectorySeparator).Replace('`', '-'));
+		WriteDoc(content, to);
+	}
+	public static void WriteDoc(string content, File to)
+	{
+#if RELEASE
+			to.Create(true);
+			to.WriteText(content);
+#endif
+		Console.WriteLine($"File Created: {to.Path}");
+	}
+	static Entry()
+	{
+		GLOBAL = Directory.GetCurrentDirectory();
+		DOCS = new(Path.Combine(GLOBAL.Path, "docs"));
+		TEMPLATES = new(GLOBAL.Path, "templates");
 	}
 }
