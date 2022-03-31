@@ -42,6 +42,12 @@ public sealed class TypeBuilder
 		string summary = type.GetXmlDocsSummary();
 		return summary;
 	}
+	public static string GetInheritanceTreeOfType(Type type)
+	{
+		StringBuilder builder = new();
+
+		return builder.ToString();
+	}
 	public void GenDocs()
 	{
 		if (type.IsEnum)
@@ -88,6 +94,7 @@ public sealed class TypeBuilder
 			["FULL_NAME"] = new(() => type.FullName),
 			["NAMESPACE"] = new(() => type.Namespace),
 			["SUMMARY"] = new(() => GetSummaryOfType(type)),
+			["INHERITANCE"] = new(() => GetInheritanceTreeOfType(type)),
 			["ASSEMBLY"] = new(() => type.Assembly.GetName().Name),
 		};
 		UseKeys(ref temp, keys);
