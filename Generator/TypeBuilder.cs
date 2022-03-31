@@ -87,7 +87,7 @@ public sealed class TypeBuilder
 		};
 		foreach (KeyValuePair<string, Lazy<string>> pair in keys)
 		{
-			temp.ReplaceSelf(pair.Key, pair.Value.Value);
+			temp = temp.Replace(pair.Key, pair.Value.Value);
 		};
 		Entry.WriteDoc(temp, type);
 	}
