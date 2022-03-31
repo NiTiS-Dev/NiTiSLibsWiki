@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Namotion.Reflection;
+using System.Xml.Linq;
 
 namespace Generator;
 
@@ -39,8 +40,7 @@ public sealed class TypeBuilder
 	}
 	public static string GetSummaryOfType(Type type)
 	{
-		string summary = type.GetXmlDocsSummary();
-		return summary;
+		return type.GetXmlDocsSummary();
 	}
 	public static string GetInheritanceTreeOfType(Type type)
 	{
@@ -80,7 +80,7 @@ public sealed class TypeBuilder
 			["FULL_NAME"] = new(() => type.FullName),
 			["NAMESPACE"] = new(() => type.Namespace),
 			["SUMMARY"] = new(() => GetSummaryOfType(type)),
-			["ASSEMBLY"] = new(() => type.Assembly.GetName().Name),
+			["ASSEMBLY"] = new(() => type.Assembly.GetName().Name + ".dll"),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
