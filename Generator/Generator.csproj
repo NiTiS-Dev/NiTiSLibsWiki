@@ -8,7 +8,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Namotion.Reflection" Version="2.0.10" />
-		<PackageReference Include="NiTiSCore" Version="2.*" />
+		<PackageReference Include="NiTiSCore" Version="*" />
 	</ItemGroup>
 
 </Project>
