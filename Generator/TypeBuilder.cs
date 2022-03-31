@@ -27,7 +27,7 @@ public sealed class TypeBuilder
 			builder.Append(realName);
 			builder.Append(Strings.FromArray(
 				type.GetGenericArguments()
-				.Select(s => GetNormalizedGenericName(type))
+				.Select(s => GetNormalizedGenericName(s))
 				, "<", ">"));
 		}
 		else
