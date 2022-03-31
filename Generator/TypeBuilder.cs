@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Namotion.Reflection;
 
 namespace Generator;
 
@@ -35,6 +36,11 @@ public sealed class TypeBuilder
 			builder.Append(type.Name);
 		}
 		return builder.ToString();
+	}
+	public static string GetSummaryOfType(Type type)
+	{
+		string summary = type.GetXmlDocsSummary();
+		return summary;
 	}
 	public void GenDocs()
 	{
@@ -67,6 +73,7 @@ public sealed class TypeBuilder
 			["SHORT_NAME"] = new(() => GetNormalizedGenericName(type)),
 			["FULL_NAME"] = new(() => type.FullName),
 			["NAMESPACE"] = new(() => type.Namespace),
+			["SUMMARY"] = new(() => GetSummaryOfType(type)),
 			["ASSEMBLY"] = new(() => type.Assembly.GetName().Name),
 		};
 		UseKeys(ref temp, keys);
@@ -80,6 +87,7 @@ public sealed class TypeBuilder
 			["SHORT_NAME"] = new(() => GetNormalizedGenericName(type)),
 			["FULL_NAME"] = new(() => type.FullName),
 			["NAMESPACE"] = new(() => type.Namespace),
+			["SUMMARY"] = new(() => GetSummaryOfType(type)),
 			["ASSEMBLY"] = new(() => type.Assembly.GetName().Name),
 		};
 		UseKeys(ref temp, keys);
