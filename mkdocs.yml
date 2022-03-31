@@ -14,9 +14,10 @@ plugins:
   - git-revision-date
 
 theme:
-  icon:
-    repo: material/github
-    logo: images/nitis-core-icon
+  name: material
+  repo: material/github
+  logo: images/nitis-core-icon
+  favicon: images/nitis-core-icon
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -32,7 +33,6 @@ theme:
         name: Switch to light mode
       primary: red
       accent: red
-  name: material
   features:
   - navigation.tracking
   - navigation.instant
