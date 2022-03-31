@@ -64,7 +64,7 @@ public sealed class TypeBuilder
 		string temp = ENUM_TEMP.ReadText();
 		Dictionary<string, Lazy<string>> keys = new()
 		{
-			["SHORT_NAME"] = new(() => type.Name),
+			["SHORT_NAME"] = new(() => GetNormalizedGenericName(type)),
 			["FULL_NAME"] = new(() => type.FullName),
 			["NAMESPACE"] = new(() => type.Namespace),
 			["ASSEMBLY"] = new(() => type.Assembly.GetName().Name),
@@ -77,7 +77,7 @@ public sealed class TypeBuilder
 		string temp = CLASS_TEMP.ReadText();
 		Dictionary<string, Lazy<string>> keys = new()
 		{
-			["SHORT_NAME"] = new(() => type.Name),
+			["SHORT_NAME"] = new(() => GetNormalizedGenericName(type)),
 			["FULL_NAME"] = new(() => type.FullName),
 			["NAMESPACE"] = new(() => type.Namespace),
 			["ASSEMBLY"] = new(() => type.Assembly.GetName().Name),
