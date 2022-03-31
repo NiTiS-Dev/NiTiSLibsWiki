@@ -1,21 +1,20 @@
-# MEMBER_NAME
-#### Namespace: MEMBER_NAMESPACE
+# %SHORT_NAME Class
 
-```csharp
-MEMBER_INCODE
+# Definition
+<h6 class="namespace">Namepsace: %NAMESPACE</h6>
+<h6 class="namespace">Assembly: %ASSEMBLY</h6>
+
+#### %summary
+```c#
+%INCODE
 ```
+### %INHERITANCE  
+### %IMPLEMENTS
 
-## Fields
-|Access|Type|Name|
-|-|:-|:-:| 
-MEMBER_FIELDS
+<br><br>
 
-## Properties
-|Type|Name|Getter|Setter|
-|-|:-:|:-:|:-:| 
-MEMBER_PROP
-
-## Methods
-|Access|Type|Name|Arguments|
-|-|:-|:-:|:-:|
-MEMBER_FUNCTIONS
+%CTORS  
+%PROPS  
+%FIELDS  
+%METHODS  
+%EX_METHODS  
