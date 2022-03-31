@@ -1,4 +1,4 @@
-# %SHORT_NAME Enum
+# **%SHORT_NAME Enum**
 
 # Definition
 <h6 class="namespace">Namepsace: %NAMESPACE</h6>
