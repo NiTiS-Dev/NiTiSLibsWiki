@@ -60,10 +60,28 @@ public sealed class DocType : Type
 			if (type.GetFields().All(s => s.IsInitOnly)) builder.Append("readonly ");
 			builder.Append("struct ");
 		}
-		builder.Append(NormalizedName);
+		builder.Append(GetNormalizedGenericNameBasic(type));
 		return builder.ToString();
 	}
 	public TypeAttributes TypeAttr => GetAttributeFlagsImpl();
+	private static string GetNormalizedGenericNameBasic(Type type)
+	{
+		StringBuilder builder = new();
+		if (type.IsGenericType)
+		{
+			string realName = type.Name.Split('`').FirstOrDefault();
+			builder.Append(realName);
+			builder.Append(Strings.FromArray(
+				type.GetGenericArguments()
+				.Select(s => GetNormalizedGenericName(s))
+				, "<", ">"));
+		}
+		else
+		{
+			builder.Append(type.Name);
+		}
+		return builder.ToString();
+	}
 	private static string GetNormalizedGenericName(Type type)
 	{
 		StringBuilder builder = new();

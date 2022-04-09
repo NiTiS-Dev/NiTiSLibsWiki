@@ -97,6 +97,7 @@ public sealed class TypeBuilder
 			["FULL_NAME"] = new(() => type.FullName),
 			["NAMESPACE"] = new(() => type.Namespace),
 			["SUMMARY"] = new(() => GetSummaryOfType(type)),
+			["IMPLEMENTS"] = new(() => GetImplementsOfType(type)),
 			["ASSEMBLY"] = new(() => GetAssemblyName(type)),
 		};
 		UseKeys(ref temp, keys);
