@@ -1,4 +1,4 @@
-using Generator;
+﻿using Generator;
 using NiTiS.Core;
 using NiTiS.IO;
 using System;
@@ -34,6 +34,8 @@ public static class Entry
 	}
 	public static string AdoptForHTML(string content) => content
 		.Replace("{<}", "&#60;")
+		.Replace("{<-}", "&#8592;")
+		.Replace("{->}", "&#8594;")
 		.Replace("{>}", "&#62;");
 	static Entry()
 	{

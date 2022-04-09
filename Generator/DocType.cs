@@ -11,10 +11,15 @@ namespace Generator;
 public sealed class DocType : Type
 {
 	private readonly Type type;
-	public DocType(Type type) => this.type = type;
+	public DocType(Type type) => this!.type = type;
 	public string NormalizedName => GetNormalizedGenericName(this.type);
+	public string Link => $"[{NormalizedName}]({GetDocAdress()})";
+	public string GetDocAdress()
+	{
+		return @"https://google.com";
+	}
 	public TypeAttributes TypeAttr => GetAttributeFlagsImpl();
-	public static string GetNormalizedGenericName(Type type)
+	private static string GetNormalizedGenericName(Type type)
 	{
 		StringBuilder builder = new();
 		if (type.IsGenericType)

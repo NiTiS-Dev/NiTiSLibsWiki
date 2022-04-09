@@ -27,19 +27,19 @@ public sealed class TypeBuilder
 		StringBuilder builder = new();
 		List<DocType> types = new();
 		DocType now = type;
-		while(true)
+		types.Add(new(typeof(Object)));
+		while(now.BaseType != typeof(Object))
 		{
 			types.Add(now);
 			now = new(now.BaseType);
-			if (now.BaseType == typeof(Object)) break;
 		}
-		builder.Append(Strings.FromArray(types, "", "", "{<-}"));
+		builder.Append(Strings.FromArray(types.Select(s => s.Link), "", "", " {->} "));
 		return builder.ToString();
 	}
 	public static string GetImplementsOfType(DocType type)
 	{
 		DocType[] interfaces = type.GetInterfaces().Select(s => new DocType(s)).ToArray();
-		return interfaces.Length == 0 ? "" : "Implements " + Strings.FromArray(interfaces.Select(s => s.NormalizedName), "", "", ", ");
+		return interfaces.Length == 0 ? "" : "Implements " + Strings.FromArray(interfaces.Select(s => s.Link), "", "", ", ");
 	}
 	public static string GetAssemblyName(DocType type) => type.Assembly.GetName().Name + ".dll";
 	public void GenDocs()
