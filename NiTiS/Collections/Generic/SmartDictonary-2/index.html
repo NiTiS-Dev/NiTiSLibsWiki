@@ -1200,21 +1200,21 @@
 <h6 class="title-sub">Assembly: NiTiS.Collections.dll</h6>
 
 <h4 id="_1"></h4>
-<pre><code class="language-c#">%INCODE
+<pre><code class="language-c#">public class SmartDictonary&amp;#60;TKey, TValue&amp;#62;
 </code></pre>
 <h4 id="inheritance-object-dictionarytkey-tvalue-smartdictonarytkey-tvalue">Inheritance <a href="https://docs.microsoft.com/dotnet/api/system.object">Object</a> &#8594; <a href="https://docs.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary&#60;TKey, TValue&#62;</a> &#8594; <a href="https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Collections/Generic/SmartDictonary-2">SmartDictonary&#60;TKey, TValue&#62;</a></h4>
 <h4 id="implements-idictionarytkey-tvalue-icollectionkeyvaluepairtkey-tvalue-ienumerablekeyvaluepairtkey-tvalue-ienumerable-idictionary-icollection-ireadonlydictionarytkey-tvalue-ireadonlycollectionkeyvaluepairtkey-tvalue-iserializable-ideserializationcallback">Implements <a href="https://docs.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary&#60;TKey, TValue&#62;</a>, <a href="https://docs.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&#60;KeyValuePair&#60;TKey, TValue&#62;&#62;</a>, <a href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable&#60;KeyValuePair&#60;TKey, TValue&#62;&#62;</a>, <a href="https://docs.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a>, <a href="https://docs.microsoft.com/dotnet/api/system.collections.idictionary">IDictionary</a>, <a href="https://docs.microsoft.com/dotnet/api/system.collections.icollection">ICollection</a>, <a href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlydictionary-2">IReadOnlyDictionary&#60;TKey, TValue&#62;</a>, <a href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1">IReadOnlyCollection&#60;KeyValuePair&#60;TKey, TValue&#62;&#62;</a>, <a href="https://docs.microsoft.com/dotnet/api/system.runtime.serialization.iserializable">ISerializable</a>, <a href="https://docs.microsoft.com/dotnet/api/system.runtime.serialization.ideserializationcallback">IDeserializationCallback</a></h4>
 <p><br></p>
 <h3 id="constructors">Constructors</h3>
-<p>SmartDictonary&#60;TKey, TValue&#62;(NiTiS.Collections.Generic.SmartDictonary<code>2+KeyGetter[TKey,TValue])
-  SmartDictonary&amp;#60;TKey, TValue&amp;#62;(NiTiS.Collections.Generic.SmartDictonary</code>2+KeyGetter[TKey,TValue], System.Collections.Generic.IDictionary<code>2[TKey,TValue])
-  SmartDictonary&amp;#60;TKey, TValue&amp;#62;(NiTiS.Collections.Generic.SmartDictonary</code>2+KeyGetter[TKey,TValue], System.Collections.Generic.IDictionary<code>2[TKey,TValue], System.Collections.Generic.IEqualityComparer</code>1[TKey])
-  SmartDictonary&#60;TKey, TValue&#62;(NiTiS.Collections.Generic.SmartDictonary<code>2+KeyGetter[TKey,TValue], System.Int32)
-  SmartDictonary&amp;#60;TKey, TValue&amp;#62;(NiTiS.Collections.Generic.SmartDictonary</code>2+KeyGetter[TKey,TValue], System.Int32, System.Collections.Generic.IEqualityComparer<code>1[TKey])
-  SmartDictonary&amp;#60;TKey, TValue&amp;#62;(NiTiS.Collections.Generic.SmartDictonary</code>2+KeyGetter[TKey,TValue], System.Collections.Generic.IEnumerable<code>1[System.Collections.Generic.KeyValuePair</code>2[TKey,TValue]])
-  SmartDictonary&#60;TKey, TValue&#62;(NiTiS.Collections.Generic.SmartDictonary<code>2+KeyGetter[TKey,TValue], System.Collections.Generic.IEnumerable</code>1[System.Collections.Generic.KeyValuePair<code>2[TKey,TValue]], System.Collections.Generic.IEqualityComparer</code>1[TKey])
-  SmartDictonary&#60;TKey, TValue&#62;(NiTiS.Collections.Generic.SmartDictonary<code>2+KeyGetter[TKey,TValue], System.Collections.Generic.IEnumerable</code>1[TValue])
-  SmartDictonary&#60;TKey, TValue&#62;(NiTiS.Collections.Generic.SmartDictonary<code>2+KeyGetter[TKey,TValue], System.Collections.Generic.IEnumerable</code>1[TValue], System.Collections.Generic.IEqualityComparer`1[TKey])</p>
+<p>SmartDictonary&#60;TKey, TValue&#62;(KeyGetter&#60;TKey, TValue&#62;)<br />
+SmartDictonary&#60;TKey, TValue&#62;(KeyGetter&#60;TKey, TValue&#62;, IDictionary&#60;TKey, TValue&#62;)<br />
+SmartDictonary&#60;TKey, TValue&#62;(KeyGetter&#60;TKey, TValue&#62;, IDictionary&#60;TKey, TValue&#62;, IEqualityComparer&#60;TKey&#62;)<br />
+SmartDictonary&#60;TKey, TValue&#62;(KeyGetter&#60;TKey, TValue&#62;, Int32)<br />
+SmartDictonary&#60;TKey, TValue&#62;(KeyGetter&#60;TKey, TValue&#62;, Int32, IEqualityComparer&#60;TKey&#62;)<br />
+SmartDictonary&#60;TKey, TValue&#62;(KeyGetter&#60;TKey, TValue&#62;, IEnumerable&#60;KeyValuePair&#60;TKey, TValue&#62;&#62;)<br />
+SmartDictonary&#60;TKey, TValue&#62;(KeyGetter&#60;TKey, TValue&#62;, IEnumerable&#60;KeyValuePair&#60;TKey, TValue&#62;&#62;, IEqualityComparer&#60;TKey&#62;)<br />
+SmartDictonary&#60;TKey, TValue&#62;(KeyGetter&#60;TKey, TValue&#62;, IEnumerable&#60;TValue&#62;)<br />
+SmartDictonary&#60;TKey, TValue&#62;(KeyGetter&#60;TKey, TValue&#62;, IEnumerable&#60;TValue&#62;, IEqualityComparer&#60;TKey&#62;)  </p>
 <p>%PROPS<br />
 %FIELDS<br />
 %METHODS<br />
