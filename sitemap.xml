@@ -176,6 +176,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Interaction/Services/IService/</loc>
+         <lastmod>2022-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Interaction/Services/ServiceCollection/</loc>
          <lastmod>2022-04-09</lastmod>
          <changefreq>daily</changefreq>
@@ -227,6 +232,16 @@
     </url>
     <url>
          <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Ranged/IRangedVar-1/</loc>
+         <lastmod>2022-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Ranged/Max-1/</loc>
+         <lastmod>2022-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Math/Ranged/Min-1/</loc>
          <lastmod>2022-04-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
