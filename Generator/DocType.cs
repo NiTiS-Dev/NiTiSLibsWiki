@@ -26,9 +26,27 @@ public sealed class DocType : Type
 		foreach (ConstructorInfo info in ctors)
 		{
 			builder.Append(NormalizedName);
-			builder.Append(Strings.FromArray(info.GetParameters().Select(s => s.ParameterType), "(", ")"));
-			builder.Append("\n  ");
+			builder.Append(Strings.FromArray(info.GetParameters().Select(s => GetNormalizedGenericName(s.ParameterType) ), "(", ")"));
+			builder.Append("  \n");
 		}
+		return builder.ToString();
+	}
+	public string GenDocINCODE()
+	{
+		StringBuilder builder = new();
+		builder.Append("public ");
+		if (type.IsClass)
+		{
+			if (TypeAttr.HasFlag(TypeAttributes.Sealed))
+			{
+				builder.Append(TypeAttr.HasFlag(TypeAttributes.Abstract) ? "static " : "sealed ");
+			} else if (TypeAttr.HasFlag(TypeAttributes.Abstract))
+			{
+				builder.Append("abstract");
+			}
+			builder.Append("class ");
+		}
+		builder.Append(NormalizedName);
 		return builder.ToString();
 	}
 	public TypeAttributes TypeAttr => GetAttributeFlagsImpl();

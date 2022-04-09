@@ -89,6 +89,7 @@ public sealed class TypeBuilder
 		Dictionary<string, Lazy<string>> keys = new()
 		{
 			["SHORT_NAME"] = new(() => type.NormalizedName),
+			["INCODE"] = new(() => type.GenDocINCODE()),
 			["FULL_NAME"] = new(() => type.FullName),
 			["NAMESPACE"] = new(() => type.Namespace),
 			["SUMMARY"] = new(() => GetSummaryOfType(type)),
