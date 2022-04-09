@@ -36,7 +36,7 @@ public sealed class DocType : Type
 		StringBuilder builder = new();
 		if (type.IsClass)
 		{
-			builder.Append("public");
+			builder.Append("public ");
 			if (TypeAttr.HasFlag(TypeAttributes.Sealed))
 			{
 				builder.Append(TypeAttr.HasFlag(TypeAttributes.Abstract) ? "static " : "sealed ");
