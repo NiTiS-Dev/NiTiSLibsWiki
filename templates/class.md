@@ -1,8 +1,8 @@
 # %SHORT_NAME Class
 # Definition
 
-###### Namepsace: %NAMESPACE  
-###### Assembly: %ASSEMBLY
+<h6 class="title-sub">Namepsace: %NAMESPACE</h6>
+<h6 class="title-sub">Assembly: %ASSEMBLY</h6>
 
 #### %SUMMARY
 ```c#
@@ -11,8 +11,10 @@
 ### %INHERITANCE  
 ### %IMPLEMENTS
 
+<br>
+
 %CTORS  
 %PROPS  
 %FIELDS  
 %METHODS  
-%EX_METHODS
+%EX_METHODS  
