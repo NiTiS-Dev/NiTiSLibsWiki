@@ -29,9 +29,12 @@ public static class Entry
 	public static void WriteDoc(string content, File to)
 	{
 		to.Create(true);
-		to.WriteText(content);
+		to.WriteText(AdoptForHTML(content));
 		Console.WriteLine($"File Created: {to.Path}");
 	}
+	public static string AdoptForHTML(string content) => content
+		.Replace("<", "&#60;")
+		.Replace(">", "&#62;");
 	static Entry()
 	{
 		GLOBAL = Directory.GetCurrentDirectory();
