@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Namotion.Reflection;
 
 namespace Generator;
 
@@ -22,13 +23,32 @@ public sealed class DocType : Type
 
 		StringBuilder builder = new();
 		
-		builder.Append("### Constructors\n");
+		builder.Append("# Constructors\n");
 		foreach (ConstructorInfo info in ctors)
 		{
 			builder.Append(NormalizedName);
 			builder.Append(Strings.FromArray(info.GetParameters().Select(s => GetNormalizedGenericName(s.ParameterType) ), "(", ")"));
 			builder.Append("  \n");
 		}
+		return builder.ToString();
+	}
+	public string GenDocFIELDS()
+	{
+		FieldInfo[] fields = type.GetFields();
+		FieldInfo[] parentFields = type.BaseType.GetFields();
+		FieldInfo[] newFields = fields.Where(s => !parentFields.Contains(s)).ToArray();
+
+		if (newFields.Length <= 0) return "";
+		StringBuilder builder = new();
+
+		builder.Append("# Fields\n");
+		builder.Append("|Type|Name|Summary|\n");
+		builder.Append("|:-:|:--:|:-|\n");
+		foreach (FieldInfo info in newFields)
+		{
+			builder.Append($"|{info.FieldType}|{info.Name}|{info.GetXmlDocsSummary()}|\n");
+		}
+
 		return builder.ToString();
 	}
 	public string GenDocINCODE()

@@ -117,6 +117,7 @@ public sealed class TypeBuilder
 			["INHERITANCE"] = new(() => GetInheritanceTreeOfType(type)),
 			["IMPLEMENTS"] = new(() => GetImplementsOfType(type)),
 			["CTORS"] = new(() => type.GenDocCTORS()),
+			["FIELDS"] = new(() => type.GenDocFIELDS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
@@ -135,6 +136,7 @@ public sealed class TypeBuilder
 			["INHERITANCE"] = new(() => GetInheritanceTreeOfType(type)),
 			["IMPLEMENTS"] = new(() => GetImplementsOfType(type)),
 			["CTORS"] = new(() => type.GenDocCTORS()),
+			["FIELDS"] = new(() => type.GenDocFIELDS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
