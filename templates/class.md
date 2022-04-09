@@ -8,8 +8,8 @@
 ```c#
 %INCODE
 ```
-##### %INHERITANCE  
-##### %IMPLEMENTS
+#### %INHERITANCE  
+#### %IMPLEMENTS
 
 <br>
 

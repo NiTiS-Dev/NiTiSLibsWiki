@@ -26,14 +26,18 @@ public sealed class TypeBuilder
 	{
 		StringBuilder builder = new();
 		List<DocType> types = new();
-		DocType now = type;
-		types.Add(new(typeof(Object)));
-		while(now.BaseType != typeof(Object))
+		Type now = type.type;
+		while(true)
 		{
-			types.Add(now);
-			now = new(now.BaseType);
+			if (now == typeof(Object))
+			{
+				types.Add(new(typeof(Object)));
+				break;
+			}
+			types.Add(new (now));
+			now = now.BaseType;
 		}
-		builder.Append(Strings.FromArray(types.Select(s => s.Link), "", "", " {->} "));
+		builder.Append("Inheritance " + Strings.FromArray(types.Select(s => s.Link).Reverse(), "", "", " {->} "));
 		return builder.ToString();
 	}
 	public static string GetImplementsOfType(DocType type)
