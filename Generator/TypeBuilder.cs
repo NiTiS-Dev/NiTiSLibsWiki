@@ -48,6 +48,11 @@ public sealed class TypeBuilder
 
 		return builder.ToString();
 	}
+	public static string GetImplementsOfType(Type type)
+	{
+		Type[] interfaces = type.GetInterfaces();
+		return interfaces.Length == 0 ? "" : Strings.FromArray(interfaces.Select(s => GetNormalizedGenericName(s)), "", "", ", ");
+	}
 	public void GenDocs()
 	{
 		if (type.IsEnum)
@@ -96,6 +101,7 @@ public sealed class TypeBuilder
 			["SUMMARY"] = new(() => GetSummaryOfType(type)),
 			["INHERITANCE"] = new(() => GetInheritanceTreeOfType(type)),
 			["ASSEMBLY"] = new(() => type.Assembly.GetName().Name),
+			["IMPLEMENTS"] = new(() => GetImplementsOfType(type)),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
