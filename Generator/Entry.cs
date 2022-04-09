@@ -33,8 +33,8 @@ public static class Entry
 		Console.WriteLine($"File Created: {to.Path}");
 	}
 	public static string AdoptForHTML(string content) => content
-		.Replace("<", "&#60;")
-		.Replace(">", "&#62;");
+		.Replace("{<}", "&#60;")
+		.Replace("{>}", "&#62;");
 	static Entry()
 	{
 		GLOBAL = Directory.GetCurrentDirectory();

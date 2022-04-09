@@ -12,47 +12,36 @@ namespace Generator;
 
 public sealed class TypeBuilder
 {
-	private readonly Assembly asm;
-	private readonly Type type;
+	private readonly DocType type;
 	private static readonly File ENUM_TEMP, CLASS_TEMP, INTERFACE_TEMP, STRUCT_TEMP;
 	public TypeBuilder(Type type)
 	{
-		this.asm = type.Assembly;
-		this.type = type;
+		this.type = new(type);
 	}
-	public static string GetNormalizedGenericName(Type type)
-	{
-		StringBuilder builder = new();
-		if (type.IsGenericType)
-		{
-			string realName = type.Name.Split('`').FirstOrDefault();
-			builder.Append(realName);
-			builder.Append(Strings.FromArray(
-				type.GetGenericArguments()
-				.Select(s => GetNormalizedGenericName(s))
-				, "<", ">"));
-		}
-		else
-		{
-			builder.Append(type.Name);
-		}
-		return builder.ToString();
-	}
-	public static string GetSummaryOfType(Type type)
+	public static string GetSummaryOfType(DocType type)
 	{
 		return type.GetXmlDocsSummary();
 	}
-	public static string GetInheritanceTreeOfType(Type type)
+	public static string GetInheritanceTreeOfType(DocType type)
 	{
 		StringBuilder builder = new();
-
+		List<DocType> types = new();
+		DocType now = type;
+		while(true)
+		{
+			types.Add(now);
+			now = new(now.BaseType);
+			if (now.BaseType == typeof(Object)) break;
+		}
+		builder.Append(Strings.FromArray(types, "", "", "{<-}"));
 		return builder.ToString();
 	}
-	public static string GetImplementsOfType(Type type)
+	public static string GetImplementsOfType(DocType type)
 	{
-		Type[] interfaces = type.GetInterfaces();
-		return interfaces.Length == 0 ? "" : Strings.FromArray(interfaces.Select(s => GetNormalizedGenericName(s)), "", "", ", ");
+		DocType[] interfaces = type.GetInterfaces().Select(s => new DocType(s)).ToArray();
+		return interfaces.Length == 0 ? "" : "Implements " + Strings.FromArray(interfaces.Select(s => s.NormalizedName), "", "", ", ");
 	}
+	public static string GetAssemblyName(DocType type) => type.Assembly.GetName().Name + ".dll";
 	public void GenDocs()
 	{
 		if (type.IsEnum)
@@ -81,11 +70,11 @@ public sealed class TypeBuilder
 		string temp = ENUM_TEMP.ReadText();
 		Dictionary<string, Lazy<string>> keys = new()
 		{
-			["SHORT_NAME"] = new(() => GetNormalizedGenericName(type)),
+			["SHORT_NAME"] = new(() => type.NormalizedName),
 			["FULL_NAME"] = new(() => type.FullName),
 			["NAMESPACE"] = new(() => type.Namespace),
 			["SUMMARY"] = new(() => GetSummaryOfType(type)),
-			["ASSEMBLY"] = new(() => type.Assembly.GetName().Name + ".dll"),
+			["ASSEMBLY"] = new(() => GetAssemblyName(type)),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
@@ -95,12 +84,12 @@ public sealed class TypeBuilder
 		string temp = CLASS_TEMP.ReadText();
 		Dictionary<string, Lazy<string>> keys = new()
 		{
-			["SHORT_NAME"] = new(() => GetNormalizedGenericName(type)),
+			["SHORT_NAME"] = new(() => type.NormalizedName),
 			["FULL_NAME"] = new(() => type.FullName),
 			["NAMESPACE"] = new(() => type.Namespace),
 			["SUMMARY"] = new(() => GetSummaryOfType(type)),
+			["ASSEMBLY"] = new(() => GetAssemblyName(type)),
 			["INHERITANCE"] = new(() => GetInheritanceTreeOfType(type)),
-			["ASSEMBLY"] = new(() => type.Assembly.GetName().Name),
 			["IMPLEMENTS"] = new(() => GetImplementsOfType(type)),
 		};
 		UseKeys(ref temp, keys);
