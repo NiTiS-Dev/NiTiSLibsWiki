@@ -54,11 +54,11 @@ public sealed class TypeBuilder
 		}
 		else if (type.IsInterface)
 		{
-
+			GenInterface();
 		}
 		else if (type.IsValueType)
 		{
-
+			GenStruct();
 		}
 		else if (type.IsClass)
 		{
@@ -75,10 +75,47 @@ public sealed class TypeBuilder
 		Dictionary<string, Lazy<string>> keys = new()
 		{
 			["SHORT_NAME"] = new(() => type.NormalizedName),
+			["INCODE"] = new(() => type.GenDocINCODE()),
 			["FULL_NAME"] = new(() => type.FullName),
 			["NAMESPACE"] = new(() => type.Namespace),
 			["SUMMARY"] = new(() => GetSummaryOfType(type)),
 			["ASSEMBLY"] = new(() => GetAssemblyName(type)),
+			["INHERITANCE"] = new(() => GetInheritanceTreeOfType(type)),
+			["IMPLEMENTS"] = new(() => GetImplementsOfType(type)),
+			["CTORS"] = new(() => type.GenDocCTORS()),
+		};
+		UseKeys(ref temp, keys);
+		Entry.WriteDoc(temp, type);
+	}
+	private void GenInterface()
+	{
+		string temp = INTERFACE_TEMP.ReadText();
+		Dictionary<string, Lazy<string>> keys = new()
+		{
+			["SHORT_NAME"] = new(() => type.NormalizedName),
+			["INCODE"] = new(() => type.GenDocINCODE()),
+			["FULL_NAME"] = new(() => type.FullName),
+			["NAMESPACE"] = new(() => type.Namespace),
+			["SUMMARY"] = new(() => GetSummaryOfType(type)),
+			["ASSEMBLY"] = new(() => GetAssemblyName(type)),
+		};
+		UseKeys(ref temp, keys);
+		Entry.WriteDoc(temp, type);
+	}
+	private void GenStruct()
+	{
+		string temp = STRUCT_TEMP.ReadText();
+		Dictionary<string, Lazy<string>> keys = new()
+		{
+			["SHORT_NAME"] = new(() => type.NormalizedName),
+			["INCODE"] = new(() => type.GenDocINCODE()),
+			["FULL_NAME"] = new(() => type.FullName),
+			["NAMESPACE"] = new(() => type.Namespace),
+			["SUMMARY"] = new(() => GetSummaryOfType(type)),
+			["ASSEMBLY"] = new(() => GetAssemblyName(type)),
+			["INHERITANCE"] = new(() => GetInheritanceTreeOfType(type)),
+			["IMPLEMENTS"] = new(() => GetImplementsOfType(type)),
+			["CTORS"] = new(() => type.GenDocCTORS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);

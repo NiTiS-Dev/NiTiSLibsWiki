@@ -34,9 +34,9 @@ public sealed class DocType : Type
 	public string GenDocINCODE()
 	{
 		StringBuilder builder = new();
-		builder.Append("public ");
 		if (type.IsClass)
 		{
+			builder.Append("public");
 			if (TypeAttr.HasFlag(TypeAttributes.Sealed))
 			{
 				builder.Append(TypeAttr.HasFlag(TypeAttributes.Abstract) ? "static " : "sealed ");
@@ -45,6 +45,20 @@ public sealed class DocType : Type
 				builder.Append("abstract");
 			}
 			builder.Append("class ");
+		}
+		else if (type.IsInterface)
+		{
+			builder.Append("public interface ");
+		}
+		else if (type.IsEnum)
+		{
+			builder.Append("public enum ");
+		}
+		else if (type.IsValueType)
+		{
+			builder.Append("public ");
+			if (type.GetFields().All(s => s.IsInitOnly)) builder.Append("readonly ");
+			builder.Append("struct ");
 		}
 		builder.Append(NormalizedName);
 		return builder.ToString();
