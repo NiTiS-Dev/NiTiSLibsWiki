@@ -95,6 +95,7 @@ public sealed class TypeBuilder
 			["ASSEMBLY"] = new(() => GetAssemblyName(type)),
 			["INHERITANCE"] = new(() => GetInheritanceTreeOfType(type)),
 			["IMPLEMENTS"] = new(() => GetImplementsOfType(type)),
+			["CTORS"] = new(() => type.GenDocCTORS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
