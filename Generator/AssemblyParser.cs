@@ -6,6 +6,7 @@ namespace Generator;
 public sealed class AssemblyParser
 {
 	private readonly Assembly asm;
+        private readonly Dictonary<string, TypeBuilder> namespaces = new();
 	public AssemblyParser(Assembly asm) => this.asm = asm;
 	public void GenDocs()
 	{
@@ -15,9 +16,12 @@ public sealed class AssemblyParser
 				|| type.FullName.StartsWith("Microsoft")
 				|| type.FullName.Contains("__") //Delete display classes
 				|| type.FullName.Contains('+')
-				) continue;
+	  			) continue;
+                        string @namepsace = type.Namespace;  
 			TypeBuilder builder = new(type);
 			builder.GenDocs();
+                        namespaces[@namespace] = builder; 
+                        //TODO: Create namepsaces pages
 		}
 	}
 }
