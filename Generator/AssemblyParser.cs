@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generics;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace Generator;
