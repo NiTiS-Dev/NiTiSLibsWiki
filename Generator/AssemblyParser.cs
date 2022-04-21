@@ -7,7 +7,7 @@ namespace Generator;
 public sealed class AssemblyParser
 {
 	private readonly Assembly asm;
-        private readonly Dictonary<string, TypeBuilder> namespaces = new();
+        private readonly Dictionary<string, TypeBuilder> namespaces = new();
 	public AssemblyParser(Assembly asm) => this.asm = asm;
 	public void GenDocs()
 	{
