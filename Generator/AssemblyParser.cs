@@ -18,10 +18,10 @@ public sealed class AssemblyParser
 				|| type.FullName.Contains("__") //Delete display classes
 				|| type.FullName.Contains('+')
 	  			) continue;
-                        string @namepsace = type.Namespace;  
+                        string space = type.Namespace;  
 			TypeBuilder builder = new(type);
 			builder.GenDocs();
-                        namespaces[@namespace] = builder; 
+                        namespaces[space] = builder;
                         //TODO: Create namepsaces pages
 		}
 	}
