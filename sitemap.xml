@@ -31,7 +31,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.IO.Format/</loc>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.IO.Format.TABS/</loc>
          <lastmod>2022-04-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -76,6 +76,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Additions/Cast-2/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Additions/Dipper-1/</loc>
          <lastmod>2022-04-27</lastmod>
          <changefreq>daily</changefreq>
@@ -87,6 +92,26 @@
     </url>
     <url>
          <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Additions/EnumInfoAttribute/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Additions/Functions/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Additions/Iterator-1/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Additions/SmartIterator-1/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Additions/SmartIterator-2/</loc>
          <lastmod>2022-04-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -226,17 +251,52 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Format/IFormatProvider-1/</loc>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Format/TABS/ITABSSerializable/</loc>
          <lastmod>2022-04-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Format/IFormatReader-1/</loc>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Format/TABS/TABSDictonary/</loc>
          <lastmod>2022-04-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Format/IFormatWriter-1/</loc>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Format/TABS/TABSElement/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Format/TABS/TABSJustValue/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Format/TABS/TABSLine/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Format/TABS/TABSLineType/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Format/TABS/TABSList/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Format/TABS/TABSObject/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Format/TABS/TABSSerializer/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/IO/Format/TABS/TABSSyntaxException/</loc>
          <lastmod>2022-04-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
