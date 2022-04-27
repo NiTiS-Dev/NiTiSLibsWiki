@@ -1,18 +1,16 @@
-﻿using NiTiS.Additions;
+﻿using Namotion.Reflection;
+using NiTiS.Additions;
 using NiTiS.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using Namotion.Reflection;
-using System.Xml.Linq;
 
 namespace Generator;
 
 public sealed class TypeBuilder
 {
-	private readonly DocType type;
+	public readonly DocType type;
 	private static readonly File ENUM_TEMP, CLASS_TEMP, INTERFACE_TEMP, STRUCT_TEMP;
 	public TypeBuilder(Type type)
 	{
@@ -40,6 +38,12 @@ public sealed class TypeBuilder
 		builder.Append("Inheritance " + Strings.FromArray(types.Select(s => s.Link).Reverse(), "", "", " {->} "));
 		return builder.ToString();
 	}
+
+	public string GenLink()
+	{
+		return $"[{type.Name}]({type.GetDocAdress()})";
+	}
+
 	public static string GetImplementsOfType(DocType type)
 	{
 		DocType[] interfaces = type.GetInterfaces().Select(s => new DocType(s)).ToArray();
@@ -72,17 +76,17 @@ public sealed class TypeBuilder
 	private void GenEnum()
 	{
 		string temp = ENUM_TEMP.ReadText();
-		Dictionary<string, Lazy<string>> keys = new()
+		KeyDictonary keys = new()
 		{
-			["SHORT_NAME"] = new(() => type.NormalizedName),
-			["INCODE"] = new(() => type.GenDocINCODE()),
-			["FULL_NAME"] = new(() => type.FullName),
-			["NAMESPACE"] = new(() => type.Namespace),
-			["SUMMARY"] = new(() => GetSummaryOfType(type)),
-			["ASSEMBLY"] = new(() => GetAssemblyName(type)),
-			["INHERITANCE"] = new(() => GetInheritanceTreeOfType(type)),
-			["IMPLEMENTS"] = new(() => GetImplementsOfType(type)),
-			["CTORS"] = new(() => type.GenDocCTORS()),
+			["SHORT_NAME"] = new(type.NormalizedName),
+			["INCODE"] = new(type.GenDocINCODE),
+			["FULL_NAME"] = new(type.FullName),
+			["NAMESPACE"] = new(type.NamespaceLink),
+			["SUMMARY"] = new(GetSummaryOfType(type)),
+			["ASSEMBLY"] = new(GetAssemblyName(type)),
+			["INHERITANCE"] = new(GetInheritanceTreeOfType(type)),
+			["IMPLEMENTS"] = new(GetImplementsOfType(type)),
+			["CTORS"] = new(type.GenDocCTORS),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
@@ -90,12 +94,12 @@ public sealed class TypeBuilder
 	private void GenInterface()
 	{
 		string temp = INTERFACE_TEMP.ReadText();
-		Dictionary<string, Lazy<string>> keys = new()
+		KeyDictonary keys = new()
 		{
 			["SHORT_NAME"] = new(() => type.NormalizedName),
 			["INCODE"] = new(() => type.GenDocINCODE()),
 			["FULL_NAME"] = new(() => type.FullName),
-			["NAMESPACE"] = new(() => type.Namespace),
+			["NAMESPACE"] = new(() => type.NamespaceLink),
 			["SUMMARY"] = new(() => GetSummaryOfType(type)),
 			["IMPLEMENTS"] = new(() => GetImplementsOfType(type)),
 			["ASSEMBLY"] = new(() => GetAssemblyName(type)),
@@ -106,18 +110,18 @@ public sealed class TypeBuilder
 	private void GenStruct()
 	{
 		string temp = STRUCT_TEMP.ReadText();
-		Dictionary<string, Lazy<string>> keys = new()
+		KeyDictonary keys = new()
 		{
-			["SHORT_NAME"] = new(() => type.NormalizedName),
-			["INCODE"] = new(() => type.GenDocINCODE()),
-			["FULL_NAME"] = new(() => type.FullName),
-			["NAMESPACE"] = new(() => type.Namespace),
-			["SUMMARY"] = new(() => GetSummaryOfType(type)),
-			["ASSEMBLY"] = new(() => GetAssemblyName(type)),
-			["INHERITANCE"] = new(() => GetInheritanceTreeOfType(type)),
-			["IMPLEMENTS"] = new(() => GetImplementsOfType(type)),
-			["CTORS"] = new(() => type.GenDocCTORS()),
-			["FIELDS"] = new(() => type.GenDocFIELDS()),
+			["SHORT_NAME"] = new(type.NormalizedName),
+			["INCODE"] = new(type.GenDocINCODE),
+			["FULL_NAME"] = new(type.FullName),
+			["NAMESPACE"] = new(type.NamespaceLink),
+			["SUMMARY"] = new(GetSummaryOfType(type)),
+			["ASSEMBLY"] = new(GetAssemblyName(type)),
+			["INHERITANCE"] = new(GetInheritanceTreeOfType(type)),
+			["IMPLEMENTS"] = new(GetImplementsOfType(type)),
+			["CTORS"] = new(type.GenDocCTORS),
+			["FIELDS"] = new(type.GenDocFIELDS),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
@@ -125,18 +129,18 @@ public sealed class TypeBuilder
 	private void GenClass()
 	{
 		string temp = CLASS_TEMP.ReadText();
-		Dictionary<string, Lazy<string>> keys = new()
+		KeyDictonary keys = new()
 		{
-			["SHORT_NAME"] = new(() => type.NormalizedName),
-			["INCODE"] = new(() => type.GenDocINCODE()),
-			["FULL_NAME"] = new(() => type.FullName),
-			["NAMESPACE"] = new(() => type.Namespace),
-			["SUMMARY"] = new(() => GetSummaryOfType(type)),
-			["ASSEMBLY"] = new(() => GetAssemblyName(type)),
-			["INHERITANCE"] = new(() => GetInheritanceTreeOfType(type)),
-			["IMPLEMENTS"] = new(() => GetImplementsOfType(type)),
-			["CTORS"] = new(() => type.GenDocCTORS()),
-			["FIELDS"] = new(() => type.GenDocFIELDS()),
+			["SHORT_NAME"] = new(type.NormalizedName),
+			["INCODE"] = new(type.GenDocINCODE()),
+			["FULL_NAME"] = new(type.FullName),
+			["NAMESPACE"] = new(type.NamespaceLink),
+			["SUMMARY"] = new(GetSummaryOfType(type)),
+			["ASSEMBLY"] = new(GetAssemblyName(type)),
+			["INHERITANCE"] = new(GetInheritanceTreeOfType(type)),
+			["IMPLEMENTS"] = new(GetImplementsOfType(type)),
+			["CTORS"] = new(type.GenDocCTORS()),
+			["FIELDS"] = new(type.GenDocFIELDS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);

@@ -1,0 +1,1 @@
+﻿global using KeyDictonary = System.Collections.Generic.Dictionary<string, System.Lazy<string>>;

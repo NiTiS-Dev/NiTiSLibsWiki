@@ -21,6 +21,11 @@ public static class Entry
 			parser.GenDocs();
 		}
 	}
+	public static void WriteDoc(string content, NamespaceBuilder builder)
+	{
+		File to = new(DOCS, "Namespaces/" + builder.Namepsace + ".md");
+		WriteDoc(content, to);
+	}
 	public static void WriteDoc(string content, Type type)
 	{
 		File to = new(DOCS, type.FullName.Replace('.', Path.DirectorySeparator).Replace('`', '-') + ".md");
@@ -40,7 +45,7 @@ public static class Entry
 	static Entry()
 	{
 		GLOBAL = Directory.GetCurrentDirectory();
-		DOCS = new(Path.Combine(GLOBAL.Path, "docs"));
+		DOCS = new(GLOBAL.Path, "docs");
 		TEMPLATES = new(GLOBAL.Path, "templates");
 	}
 }

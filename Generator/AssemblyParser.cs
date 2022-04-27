@@ -7,7 +7,7 @@ namespace Generator;
 public sealed class AssemblyParser
 {
 	private readonly Assembly asm;
-        private readonly Dictionary<string, TypeBuilder> namespaces = new();
+	private readonly Dictionary<string, List<TypeBuilder>> namespaces = new();
 	public AssemblyParser(Assembly asm) => this.asm = asm;
 	public void GenDocs()
 	{
@@ -18,11 +18,28 @@ public sealed class AssemblyParser
 				|| type.FullName.Contains("__") //Delete display classes
 				|| type.FullName.Contains('+')
 	  			) continue;
-                        string space = type.Namespace;  
+			string space = type.Namespace;  
 			TypeBuilder builder = new(type);
 			builder.GenDocs();
-                        namespaces[space] = builder;
-                        //TODO: Create namepsaces pages
+			if (!String.IsNullOrWhiteSpace(space))
+			{
+				if (namespaces.TryGetValue(space, out List<TypeBuilder> build))
+				{
+					build.Add(builder);
+				} else
+				{
+					namespaces[space] = new()
+					{
+						builder
+					};
+				}
+			}
+		}
+		foreach (KeyValuePair<string, List<TypeBuilder>> namespaceAndBuilders in namespaces)
+		{
+			NamespaceBuilder namespaceBuilder = new(namespaceAndBuilders.Key);
+			namespaceBuilder.ApplyTypes(namespaceAndBuilders.Value);
+			namespaceBuilder.GenDocs();
 		}
 	}
 }

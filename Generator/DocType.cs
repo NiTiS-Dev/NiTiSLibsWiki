@@ -15,7 +15,9 @@ public sealed class DocType : Type
 	public DocType(Type type) => this!.type = type;
 	public string NormalizedName => GetNormalizedGenericName(this.type);
 	public string Link => $"[{NormalizedName}]({GetDocAdress()})";
+	public string NamespaceLink => $"[{Namespace}]({GetNamespaceDocAdress()})";
 	public string GetDocAdress() => type.Namespace.StartsWith("System") ? @$"https://docs.microsoft.com/dotnet/api/{(type.Namespace + "." + type.Name.Replace('`','-')).ToLower()}" : $"{Entry.SITE_URL}{type.Namespace.Replace('.','/')}/{type.Name.Replace('`', '-')}";
+	public string GetNamespaceDocAdress() => $"{Entry.SITE_URL}Namespaces/{type.Namespace}";
 	public string GenDocCTORS()
 	{
 		ConstructorInfo[] ctors = type.GetConstructors();
