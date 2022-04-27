@@ -6,6 +6,71 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.Additions/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.Collections.Generic/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.Collections.Pseudo/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.Collections/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.Core/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.IO.Format/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.IO/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.Interaction.Services/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.Interaction/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.Math.Ranged/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.Math.Vectors/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.Math/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://nitis-dev.github.io/nitis-core-wiki/Namespaces/NiTiS.Reflection/</loc>
+         <lastmod>2022-04-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://nitis-dev.github.io/nitis-core-wiki/NiTiS/Additions/Booleans/</loc>
          <lastmod>2022-04-27</lastmod>
          <changefreq>daily</changefreq>
