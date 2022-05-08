@@ -166,6 +166,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/Collections/Generic/Sequence-1/</loc>
+         <lastmod>2022-05-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/Collections/Generic/SmartDictonary-2/</loc>
          <lastmod>2022-05-08</lastmod>
          <changefreq>daily</changefreq>
