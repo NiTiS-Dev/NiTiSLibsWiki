@@ -5,6 +5,16 @@ VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generator", "Generator\Generator.csproj", "{75F09564-96ED-4CD4-8927-DF9C97F96661}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC6F3C4D-CA13-4D0E-B2EE-174CB49282D5}"
+	ProjectSection(SolutionItems) = preProject
+		templates\class.md = templates\class.md
+		templates\enum.md = templates\enum.md
+		templates\index.md = templates\index.md
+		templates\interface.md = templates\interface.md
+		templates\namespace.md = templates\namespace.md
+		templates\struct.md = templates\struct.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

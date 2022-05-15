@@ -1,5 +1,5 @@
 # %SHORT_NAME Enum
-# Definition
+## Definition
 
 ###### Namepsace: %NAMESPACE
 ###### Assembly: %ASSEMBLY

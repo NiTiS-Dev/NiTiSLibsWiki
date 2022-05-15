@@ -25,11 +25,11 @@ public sealed class DocType : Type
 
 		StringBuilder builder = new();
 		
-		builder.Append("# Constructors\n");
+		builder.Append("## Constructors\n");
 		foreach (ConstructorInfo info in ctors)
 		{
 			builder.Append(NormalizedName);
-			builder.Append(Strings.FromArray(info.GetParameters().Select(s => GetNormalizedGenericName(s.ParameterType) ), "(", ")"));
+			builder.Append(Strings.FromArray(info.GetParameters().Select(s => new DocType(s.ParameterType).Link), "(", ")"));
 			builder.Append("  \n");
 		}
 		return builder.ToString();
@@ -43,7 +43,7 @@ public sealed class DocType : Type
 		if (newFields.Length <= 0) return "";
 		StringBuilder builder = new();
 
-		builder.Append("# Fields\n");
+		builder.Append("## Fields\n");
 		builder.Append("|Type|Name|Summary|\n");
 		builder.Append("|:-:|:--:|:-|\n");
 		foreach (FieldInfo info in newFields)

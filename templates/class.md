@@ -1,5 +1,5 @@
 # %SHORT_NAME Class
-# Definition
+## Definition
 
 ###### Namepsace: %NAMESPACE
 ###### Assembly: %ASSEMBLY

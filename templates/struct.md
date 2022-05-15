@@ -1,5 +1,5 @@
 # %SHORT_NAME Structure
-# Definition
+## Definition
 
 ###### Namepsace: %NAMESPACE
 ###### Assembly: %ASSEMBLY

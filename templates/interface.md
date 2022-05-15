@@ -1,5 +1,5 @@
 # %SHORT_NAME Interface
-# Definition
+## Definition
 
 ###### Namepsace: %NAMESPACE
 ###### Assembly: %ASSEMBLY
