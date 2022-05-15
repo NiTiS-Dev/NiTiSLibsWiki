@@ -43,7 +43,7 @@ public sealed class DocType : Type
 		if (newProps.Length <= 0) return "";
 		StringBuilder builder = new();
 
-		builder.Append("## Fields\n");
+		builder.Append("## Properties\n");
 		builder.Append("|Type|Name|Summary|\n");
 		builder.Append("|:-:|:--:|:-|\n");
 		foreach (PropertyInfo info in newProps)
