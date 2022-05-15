@@ -7,7 +7,7 @@ using System.Reflection;
 public static class Entry
 {
 	public static readonly Directory GLOBAL, DOCS, TEMPLATES;
-	public const string SITE_URL = @"https://nitis-dev.github.io/nitis-core-wiki/";
+	public const string SITE_URL = @"https://nitis-dev.github.io/NiTiSLibsWiki/";
 	public static void Main() {
 		//Entry logging
 		Console.WriteLine("NiTiS Core Lib V:" + NiTiSCoreLib.BasicLibs[0].GetName().Version);
