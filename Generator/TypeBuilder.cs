@@ -11,7 +11,7 @@ namespace Generator;
 public sealed class TypeBuilder
 {
 	public readonly DocType type;
-	private static readonly File ENUM_TEMP, CLASS_TEMP, INTERFACE_TEMP, STRUCT_TEMP;
+	private static readonly File ENUM_TEMP, CLASS_TEMP, INTERFACE_TEMP, STRUCT_TEMP, DELEGATE_TEMP;
 	public TypeBuilder(Type type)
 	{
 		this.type = new(type);
@@ -66,7 +66,8 @@ public sealed class TypeBuilder
 		}
 		else if (type.IsClass)
 		{
-			GenClass();
+			if (type.BaseType == typeof(MulticastDelegate) || type.BaseType == typeof(Delegate)) GenDelegate();
+			else GenClass();
 		}
 		else
 		{
@@ -103,6 +104,7 @@ public sealed class TypeBuilder
 			["SUMMARY"] = new(() => GetSummaryOfType(type)),
 			["IMPLEMENTS"] = new(() => GetImplementsOfType(type)),
 			["ASSEMBLY"] = new(() => GetAssemblyName(type)),
+			["PROPS"] = new(() => type.GenDocPROPS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
@@ -122,6 +124,7 @@ public sealed class TypeBuilder
 			["IMPLEMENTS"] = new(GetImplementsOfType(type)),
 			["CTORS"] = new(type.GenDocCTORS),
 			["FIELDS"] = new(type.GenDocFIELDS),
+			["PROPS"] = new(() => type.GenDocPROPS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
@@ -141,10 +144,13 @@ public sealed class TypeBuilder
 			["IMPLEMENTS"] = new(GetImplementsOfType(type)),
 			["CTORS"] = new(type.GenDocCTORS()),
 			["FIELDS"] = new(type.GenDocFIELDS()),
+			["PROPS"] = new(() => type.GenDocPROPS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
 	}
+	public void GenDelegate()
+		=> GenClass(); //TODO: Create custom delegate
 	private void UseKeys(ref string content, Dictionary<string, Lazy<string>> keys)
 	{
 		foreach (KeyValuePair<string, Lazy<string>> pair in keys)
@@ -158,5 +164,6 @@ public sealed class TypeBuilder
 		STRUCT_TEMP = new File(Entry.TEMPLATES, "struct.md");
 		CLASS_TEMP = new File(Entry.TEMPLATES, "class.md");
 		INTERFACE_TEMP = new File(Entry.TEMPLATES, "interface.md");
+		DELEGATE_TEMP = new File(Entry.TEMPLATES, "delegate.md");
 	}
 }

@@ -34,6 +34,25 @@ public sealed class DocType : Type
 		}
 		return builder.ToString();
 	}
+	public string GenDocPROPS()
+	{
+		PropertyInfo[] props = type.GetProperties();
+		PropertyInfo[] parentProps = type.BaseType?.GetProperties() ?? Array.Empty<PropertyInfo>();
+		PropertyInfo[] newProps = props.Where(s => !parentProps.Contains(s)).ToArray();
+
+		if (newProps.Length <= 0) return "";
+		StringBuilder builder = new();
+
+		builder.Append("## Fields\n");
+		builder.Append("|Type|Name|Summary|\n");
+		builder.Append("|:-:|:--:|:-|\n");
+		foreach (PropertyInfo info in newProps)
+		{
+			builder.Append($"|{info.PropertyType}|{info.Name}|{info.GetXmlDocsSummary()}|\n");
+		}
+
+		return builder.ToString();
+	}
 	public string GenDocFIELDS()
 	{
 		FieldInfo[] fields = type.GetFields();
