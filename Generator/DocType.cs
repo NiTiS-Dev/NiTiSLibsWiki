@@ -6,6 +6,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Namotion.Reflection;
+using NiTiS.Reflection;
+using System.Collections.Generic;
 
 namespace Generator;
 
@@ -16,8 +18,46 @@ public sealed class DocType : Type
 	public string NormalizedName => GetNormalizedGenericName(this.type);
 	public string Link => $"[{NormalizedName}]({GetDocAdress()})";
 	public string NamespaceLink => $"[{Namespace}]({GetNamespaceDocAdress()})";
-	public string GetDocAdress() => type.Namespace.StartsWith("System") ? @$"https://docs.microsoft.com/dotnet/api/{(type.Namespace + "." + type.Name.Replace('`','-')).ToLower()}" : $"{Entry.SITE_URL}{type.Namespace.Replace('.','/')}/{type.Name.Replace('`', '-')}";
+	public string Summary => type.GetXmlDocsSummary();
+	public string GetDocAdress()
+	{
+		if (type.Namespace.StartsWith("System"))
+		{
+			return @$"https://docs.microsoft.com/dotnet/api/{(type.Namespace + "." + type.Name.Replace('`', '-')).ToLower()}";
+		} else {
+			return $"{Entry.SITE_URL}{type.Namespace.Replace('.', '/')}/{type.Name.Replace('`', '-')}";
+		}
+	}
 	public string GetNamespaceDocAdress() => $"{Entry.SITE_URL}Namespaces/{type.Namespace}";
+	public string GenDocMETHODS()
+	{
+		StringBuilder builder = new();
+		IEnumerable<MethodInfo> methods = type.GetMethods(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.NonPublic);
+		methods = methods.Where(s => !s.IsSpecialName);
+		IEnumerable<MethodInfo> statMethods = methods.Where(s => s.IsStatic);
+		methods = methods.Where(s => !s.IsStatic);
+		if (methods.Count() > 1)
+		{
+			builder.Append("## Methods\n");
+			foreach (MethodInfo info in methods)
+			{
+				builder.Append("#### ");
+				builder.Append($"{new DocType(info.ReturnType).Link} {info.Name}{Strings.FromArray(info.GetParameters().Select(s => $"{(s.IsIn ? "in " : "")}{(s.IsOut ? "out " : "")}{new DocType(s.ParameterType).Link} {s.Name}"), "(", ")")}\n  ");
+				builder.Append(info.GetXmlDocsSummary() + "  \n");
+			}
+		}
+		if (statMethods.Count() > 1)
+		{
+			builder.Append("## Static Methods\n");
+			foreach (MethodInfo info in statMethods)
+			{
+				builder.Append("#### ");
+				builder.Append($"{new DocType(info.ReturnType).Link} {info.Name}{Strings.FromArray(info.GetParameters().Select(s => $"{(s.IsIn ? "in " : "")}{(s.IsOut ? "out " : "")}{new DocType(s.ParameterType).Link} {s.Name}"), "(", ")")}\n  ");
+				builder.Append(info.GetXmlDocsSummary() + "  \n");
+			}
+		}
+		return builder.ToString();
+	}
 	public string GenDocCTORS()
 	{
 		ConstructorInfo[] ctors = type.GetConstructors();
@@ -48,7 +88,7 @@ public sealed class DocType : Type
 		builder.Append("|:-:|:--:|:-|\n");
 		foreach (PropertyInfo info in newProps)
 		{
-			builder.Append($"|{info.PropertyType}|{info.Name}|{info.GetXmlDocsSummary()}|\n");
+			builder.Append($"|{new DocType(info.PropertyType).Link}|{info.Name}|{info.GetXmlDocsSummary()}|\n");
 		}
 
 		return builder.ToString();
@@ -67,7 +107,7 @@ public sealed class DocType : Type
 		builder.Append("|:-:|:--:|:-|\n");
 		foreach (FieldInfo info in newFields)
 		{
-			builder.Append($"|{info.FieldType}|{info.Name}|{info.GetXmlDocsSummary()}|\n");
+			builder.Append($"|{new DocType(info.FieldType).Link}|{info.Name}|{info.GetXmlDocsSummary()}|\n");
 		}
 
 		return builder.ToString();

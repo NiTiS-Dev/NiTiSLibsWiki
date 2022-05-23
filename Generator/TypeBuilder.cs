@@ -52,6 +52,7 @@ public sealed class TypeBuilder
 	public static string GetAssemblyName(DocType type) => type.Assembly.GetName().Name + ".dll";
 	public void GenDocs()
 	{
+		if (type.Name.StartsWith("<")) return;
 		if (type.IsEnum)
 		{
 			GenEnum();
@@ -105,6 +106,7 @@ public sealed class TypeBuilder
 			["IMPLEMENTS"] = new(() => GetImplementsOfType(type)),
 			["ASSEMBLY"] = new(() => GetAssemblyName(type)),
 			["PROPS"] = new(() => type.GenDocPROPS()),
+			["METHODS"] = new(() => type.GenDocMETHODS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
@@ -125,6 +127,7 @@ public sealed class TypeBuilder
 			["CTORS"] = new(type.GenDocCTORS),
 			["FIELDS"] = new(type.GenDocFIELDS),
 			["PROPS"] = new(() => type.GenDocPROPS()),
+			["METHODS"] = new(() => type.GenDocMETHODS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
@@ -145,6 +148,7 @@ public sealed class TypeBuilder
 			["CTORS"] = new(type.GenDocCTORS()),
 			["FIELDS"] = new(type.GenDocFIELDS()),
 			["PROPS"] = new(() => type.GenDocPROPS()),
+			["METHODS"] = new(() => type.GenDocMETHODS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
