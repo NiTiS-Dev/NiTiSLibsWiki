@@ -1103,6 +1103,26 @@
     Constructors
   </a>
   
+    <nav class="md-nav" aria-label="Constructors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-filestring-path" class="md-nav__link">
+    new File(String[] path)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-filedirectory-parent-string-filename" class="md-nav__link">
+    new File(Directory parent, String fileName)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2327,6 +2347,26 @@
     Constructors
   </a>
   
+    <nav class="md-nav" aria-label="Constructors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-filestring-path" class="md-nav__link">
+    new File(String[] path)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-filedirectory-parent-string-filename" class="md-nav__link">
+    new File(Directory parent, String fileName)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2585,14 +2625,14 @@
 <h6 id="namepsace-nitisio">Namepsace: <a href="https://nitis-dev.github.io/NiTiSLibsWiki/Namespaces/NiTiS.IO">NiTiS.IO</a></h6>
 <h6 id="assembly-nitisiodll">Assembly: NiTiS.IO.dll</h6>
 <h4 id="_1"></h4>
-<pre><code class="language-c#">public sealed class File
+<pre><code class="language-c#">public sealed class File { }
 </code></pre>
 <h4 id="inheritance-object-path-file">Inheritance <a href="https://docs.microsoft.com/dotnet/api/system.object">Object</a> &#8594; <a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/Path">Path</a> &#8594; <a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/File">File</a></h4>
 <h4 id="implements-istorageelement">Implements <a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/IStorageElement">IStorageElement</a></h4>
 <p><br></p>
 <h2 id="constructors">Constructors</h2>
-<p>File(<a href="https://docs.microsoft.com/dotnet/api/system.string[]">String[]</a> path)<br />
-File(<a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/Directory">Directory</a> parent, <a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> fileName)  </p>
+<h4 id="new-filestring-path">new File(<a href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[] path)</h4>
+<h4 id="new-filedirectory-parent-string-filename">new File(<a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/Directory">Directory</a> parent, <a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> fileName)</h4>
 <h2 id="properties">Properties</h2>
 <table>
 <thead>
@@ -2671,9 +2711,9 @@ File(<a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/Directory">Dire
 <h4 id="void-movetostring-path-boolean-overwrite"><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> MoveTo(<a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> path, <a href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a> overwrite)</h4>
 <h4 id="void-movetofile-moveto-boolean-overwrite"><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> MoveTo(<a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/File">File</a> moveTo, <a href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a> overwrite)</h4>
 <h4 id="file-createbackupfilestring-path-boolean-copy"><a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/File">File</a> CreateBackupFile(<a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> path, <a href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a> copy)</h4>
-<h4 id="byte-readbytes"><a href="https://docs.microsoft.com/dotnet/api/system.byte[]">Byte[]</a> ReadBytes()</h4>
+<h4 id="byte-readbytes"><a href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>[] ReadBytes()</h4>
 <h4 id="string-readtext"><a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> ReadText()</h4>
-<h4 id="void-writebytesbyte-bytes"><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> WriteBytes(<a href="https://docs.microsoft.com/dotnet/api/system.byte[]">Byte[]</a> bytes)</h4>
+<h4 id="void-writebytesbyte-bytes"><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> WriteBytes(<a href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>[] bytes)</h4>
 <h4 id="void-writetextstring-value"><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> WriteText(<a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> value)</h4>
 <h4 id="void-replacefile-destinationfile-file-destinationbackupfile"><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> Replace(<a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/File">File</a> destinationFile, <a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/File">File</a> destinationBackupFile)</h4>
 <h4 id="void-delete"><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> Delete()</h4>
@@ -2684,7 +2724,7 @@ File(<a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/Directory">Dire
 <h4 id="taskfile-createbackupfileasyncstring-path"><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task&#60;File&#62;</a> CreateBackupFileAsync(<a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> path)</h4>
 <h4 id="taskbyte-readbytesasynccancellationtoken-cancellationtoken"><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task&#60;Byte[]&#62;</a> ReadBytesAsync(<a href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> cancellationToken)</h4>
 <h4 id="taskstring-readtextasynccancellationtoken-cancellationtoken"><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task&#60;String&#62;</a> ReadTextAsync(<a href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> cancellationToken)</h4>
-<h4 id="task-writebytesasyncbyte-bytes-cancellationtoken-cancellationtoken"><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a> WriteBytesAsync(<a href="https://docs.microsoft.com/dotnet/api/system.byte[]">Byte[]</a> bytes, <a href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> cancellationToken)</h4>
+<h4 id="task-writebytesasyncbyte-bytes-cancellationtoken-cancellationtoken"><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a> WriteBytesAsync(<a href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>[] bytes, <a href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> cancellationToken)</h4>
 <h4 id="task-writetextasyncstring-value-cancellationtoken-cancellationtoken"><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a> WriteTextAsync(<a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> value, <a href="https://docs.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> cancellationToken)</h4>
 <h4 id="task-replaceasyncfile-destinationfile-file-destinationbackupfile"><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a> ReplaceAsync(<a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/File">File</a> destinationFile, <a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/File">File</a> destinationBackupFile)</h4>
 <h4 id="task-deleteasync"><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a> DeleteAsync()</h4>
@@ -2692,7 +2732,6 @@ File(<a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/Directory">Dire
 <h4 id="string-tostring"><a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> ToString()</h4>
 <h4 id="string-getdebuggerdisplay"><a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> GetDebuggerDisplay()</h4>
 <h4 id="void-b__54_0"><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> <DeleteAsync>b__54_0()</h4>
-<p>%EX_METHODS  </p>
 
   <hr>
 <div class="md-source-file">
