@@ -81,7 +81,7 @@ public sealed class TypeBuilder
 		KeyDictonary keys = new()
 		{
 			["SHORT_NAME"] = new(type.NormalizedName),
-			["INCODE"] = new(type.GenDocINCODE),
+			["INCODE"] = new(type.GenDocEnumINCODE),
 			["FULL_NAME"] = new(type.FullName),
 			["NAMESPACE"] = new(type.NamespaceLink),
 			["SUMMARY"] = new(GetSummaryOfType(type)),
@@ -89,6 +89,7 @@ public sealed class TypeBuilder
 			["INHERITANCE"] = new(GetInheritanceTreeOfType(type)),
 			["IMPLEMENTS"] = new(GetImplementsOfType(type)),
 			["CTORS"] = new(type.GenDocCTORS),
+			["ENUM_FIELDS"] = new(type.GetDocENUMS),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);

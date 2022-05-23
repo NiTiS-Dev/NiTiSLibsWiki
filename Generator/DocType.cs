@@ -29,6 +29,20 @@ public sealed class DocType : Type
 		}
 	}
 	public string GetNamespaceDocAdress() => $"{Entry.SITE_URL}Namespaces/{type.Namespace}";
+	public string GetDocENUMS()
+	{
+		StringBuilder builder = new();
+		string[] names = type.GetEnumNames();
+		Array enums = type.GetEnumValues();
+
+		for (int i = 0; i < names.Length; i++)
+		{
+			if (i == 0) builder.Append("## Values\n");
+			builder.Append($"{names[i]} = {Convert.ChangeType(enums.GetValue(i), ((Enum)enums.GetValue(i)).GetTypeCode())}  \n");
+		}
+
+		return builder.ToString();
+	}
 	public string GenDocMETHODS()
 	{
 		StringBuilder builder = new();
@@ -69,7 +83,7 @@ public sealed class DocType : Type
 		foreach (ConstructorInfo info in ctors)
 		{
 			builder.Append(NormalizedName);
-			builder.Append(Strings.FromArray(info.GetParameters().Select(s => new DocType(s.ParameterType).Link), "(", ")"));
+			builder.Append(Strings.FromArray(info.GetParameters().Select(s => $"{new DocType(s.ParameterType).Link} {s.Name}"), "(", ")"));
 			builder.Append("  \n");
 		}
 		return builder.ToString();
@@ -112,6 +126,8 @@ public sealed class DocType : Type
 
 		return builder.ToString();
 	}
+	public string GenDocEnumINCODE() 
+		=> GenDocINCODE() + " : " + new DocType(type.GetEnumUnderlyingType()).Name;
 	public string GenDocINCODE()
 	{
 		StringBuilder builder = new();
