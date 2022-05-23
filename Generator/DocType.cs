@@ -8,6 +8,8 @@ using System.Text;
 using Namotion.Reflection;
 using NiTiS.Reflection;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using NiTiS.Collections.Generic;
 
 namespace Generator;
 
@@ -16,7 +18,7 @@ public sealed class DocType : Type
 	internal readonly Type type;
 	public DocType(Type type) => this!.type = type;
 	public string NormalizedName => GetNormalizedGenericName(this.type);
-	public string Link => $"[{NormalizedName}]({GetDocAdress()})";
+	public string Link => type.IsArray ? new DocType(type.GetElementType()).Link + "[]": $"[{NormalizedName}]({GetDocAdress()})";
 	public string NamespaceLink => $"[{Namespace}]({GetNamespaceDocAdress()})";
 	public string Summary => type.GetXmlDocsSummary();
 	public string GetDocAdress()
@@ -43,6 +45,40 @@ public sealed class DocType : Type
 
 		return builder.ToString();
 	}
+	public string GenDocEXMETHODS()
+	{
+		StringBuilder builder = new();
+		MethodInfo[] exMethods = GetExtensionMethods(type);
+		if (exMethods.Length > 0)
+		{
+			Console.WriteLine("Type {0} has ex methods", Name);
+			builder.Append("## Extension Methods");
+			foreach (MethodInfo info in exMethods)
+			{
+				builder.Append("#### ");
+				builder.Append($"{new DocType(info.ReturnType).Link} {info.Name}{Strings.FromArray(info.GetParameters().Select(s => $"{(s.IsIn ? "in " : "")}{(s.IsOut ? "out " : "")}{new DocType(s.ParameterType).Link} {s.Name}"), "(", ")")}\n  ");
+				builder.Append(info.GetXmlDocsSummary() + "  \n");
+			}
+		}
+		return builder.ToString();
+	}
+	private static MethodInfo[] GetExtensionMethods(Type t)
+	{
+		List<Type> AssTypes = new List<Type>();
+
+		foreach (Assembly item in AppDomain.CurrentDomain.GetAssemblies())
+		{
+			AssTypes.AddRange(item.GetTypes());
+		}
+
+		IEnumerable<MethodInfo> query = from type in AssTypes
+					where type.IsSealed && !type.IsGenericType && !type.IsNested
+					from method in type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+					where method.IsDefined(typeof(ExtensionAttribute), false)
+					where method.GetParameters()[0].ParameterType == t
+					select method;
+		return query.ToArray();
+	}
 	public string GenDocMETHODS()
 	{
 		StringBuilder builder = new();
@@ -50,7 +86,7 @@ public sealed class DocType : Type
 		methods = methods.Where(s => !s.IsSpecialName);
 		IEnumerable<MethodInfo> statMethods = methods.Where(s => s.IsStatic);
 		methods = methods.Where(s => !s.IsStatic);
-		if (methods.Count() > 1)
+		if (methods.Count() > 0)
 		{
 			builder.Append("## Methods\n");
 			foreach (MethodInfo info in methods)
@@ -60,7 +96,7 @@ public sealed class DocType : Type
 				builder.Append(info.GetXmlDocsSummary() + "  \n");
 			}
 		}
-		if (statMethods.Count() > 1)
+		if (statMethods.Count() > 0)
 		{
 			builder.Append("## Static Methods\n");
 			foreach (MethodInfo info in statMethods)
@@ -82,6 +118,7 @@ public sealed class DocType : Type
 		builder.Append("## Constructors\n");
 		foreach (ConstructorInfo info in ctors)
 		{
+			builder.Append("#### new ");
 			builder.Append(NormalizedName);
 			builder.Append(Strings.FromArray(info.GetParameters().Select(s => $"{new DocType(s.ParameterType).Link} {s.Name}"), "(", ")"));
 			builder.Append("  \n");
@@ -126,8 +163,16 @@ public sealed class DocType : Type
 
 		return builder.ToString();
 	}
-	public string GenDocEnumINCODE() 
-		=> GenDocINCODE() + " : " + new DocType(type.GetEnumUnderlyingType()).Name;
+	public string GenDocEnumINCODE()
+	{
+		StringBuilder builder = new();
+		builder.Append("public enum ");
+		builder.Append(GetNormalizedGenericNameBasic(type));
+		builder.Append(" : ");
+		builder.Append(new DocType(type.GetEnumUnderlyingType()).Name);
+		builder.Append(" { }");
+		return builder.ToString();
+	}
 	public string GenDocINCODE()
 	{
 		StringBuilder builder = new();
@@ -139,7 +184,7 @@ public sealed class DocType : Type
 				builder.Append(TypeAttr.HasFlag(TypeAttributes.Abstract) ? "static " : "sealed ");
 			} else if (TypeAttr.HasFlag(TypeAttributes.Abstract))
 			{
-				builder.Append("abstract");
+				builder.Append("abstract ");
 			}
 			builder.Append("class ");
 		}
@@ -158,6 +203,7 @@ public sealed class DocType : Type
 			builder.Append("struct ");
 		}
 		builder.Append(GetNormalizedGenericNameBasic(type));
+		builder.Append(" { }");
 		return builder.ToString();
 	}
 	public TypeAttributes TypeAttr => GetAttributeFlagsImpl();

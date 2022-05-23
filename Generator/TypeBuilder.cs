@@ -90,6 +90,7 @@ public sealed class TypeBuilder
 			["IMPLEMENTS"] = new(GetImplementsOfType(type)),
 			["CTORS"] = new(type.GenDocCTORS),
 			["ENUM_FIELDS"] = new(type.GetDocENUMS),
+			["EX_METHODS"] = new(() => type.GenDocEXMETHODS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
@@ -108,6 +109,7 @@ public sealed class TypeBuilder
 			["ASSEMBLY"] = new(() => GetAssemblyName(type)),
 			["PROPS"] = new(() => type.GenDocPROPS()),
 			["METHODS"] = new(() => type.GenDocMETHODS()),
+			["EX_METHODS"] = new(() => type.GenDocEXMETHODS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
@@ -129,6 +131,7 @@ public sealed class TypeBuilder
 			["FIELDS"] = new(type.GenDocFIELDS),
 			["PROPS"] = new(() => type.GenDocPROPS()),
 			["METHODS"] = new(() => type.GenDocMETHODS()),
+			["EX_METHODS"] = new(() => type.GenDocEXMETHODS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
@@ -150,6 +153,7 @@ public sealed class TypeBuilder
 			["FIELDS"] = new(type.GenDocFIELDS()),
 			["PROPS"] = new(() => type.GenDocPROPS()),
 			["METHODS"] = new(() => type.GenDocMETHODS()),
+			["EX_METHODS"] = new(() => type.GenDocEXMETHODS()),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
