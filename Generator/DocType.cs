@@ -65,7 +65,8 @@ public sealed class DocType : Type
 			.SelectMany(s => s.GetTypes())
 			.Where(t => t.IsSealed && !t.IsGenericType && !t.IsNested)
 			.SelectMany(s => s.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
-			.Where(m => m.IsDefined(typeof(ExtensionAttribute), false));
+			.Where(m => m.IsDefined(typeof(ExtensionAttribute), false))
+			.Where(m => m.ReturnType.Name != "Byte&");
 	private static IEnumerable<MethodInfo> GetExtensionMethods(Type t)
 		=> exMethods.Where(m => t.IsAssignableTo(m.GetParameters()[0].ParameterType));
 	public string GenDocMETHODS()
