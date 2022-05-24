@@ -1,7 +1,7 @@
 h1 {
-  font-weight: 500;
-  font-size: 60px;
-  margin-bottom: 0px;
+  font-weight: 500 !important;
+  font-size: 60px !important;
+  margin-bottom: 0px !important;
 }
 
 [data-md-color-scheme="dark-mode"] {

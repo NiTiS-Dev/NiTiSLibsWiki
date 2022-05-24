@@ -38,5 +38,15 @@ theme:
   - navigation.instant
   - content.tabs.link
   - search.hightlight
+  
 extra_css:
   - stylesheets/extra.css
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      auto_title: true
+      linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
