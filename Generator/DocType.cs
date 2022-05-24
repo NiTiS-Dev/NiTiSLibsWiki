@@ -1,15 +1,13 @@
-﻿using NiTiS.Additions;
+﻿using Namotion.Reflection;
+using NiTiS.Additions;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using Namotion.Reflection;
-using NiTiS.Reflection;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using NiTiS.Collections.Generic;
+using System.Text;
 
 namespace Generator;
 
@@ -48,37 +46,28 @@ public sealed class DocType : Type
 	public string GenDocEXMETHODS()
 	{
 		StringBuilder builder = new();
-		MethodInfo[] exMethods = GetExtensionMethods(type);
-		if (exMethods.Length > 0)
+		IEnumerable<MethodInfo> exMethods = GetExtensionMethods(type);
+		if (exMethods.Count() > 0)
 		{
-			Console.WriteLine("Type {0} has ex methods", Name);
-			builder.Append("## Extension Methods");
+			builder.Append("## Extension Methods\n");
 			foreach (MethodInfo info in exMethods)
 			{
-				builder.Append("#### ");
-				builder.Append($"{new DocType(info.ReturnType).Link} {info.Name}{Strings.FromArray(info.GetParameters().Select(s => $"{(s.IsIn ? "in " : "")}{(s.IsOut ? "out " : "")}{new DocType(s.ParameterType).Link} {s.Name}"), "(", ")")}\n  ");
-				builder.Append(info.GetXmlDocsSummary() + "  \n");
+				builder.Append($"{new DocType(info.ReturnType).Link} {info.Name}{Strings.FromArray(info.GetParameters().Select(s => $"{(s.IsIn ? "in " : "")}{(s.IsOut ? "out " : "")}{new DocType(s.ParameterType).Link} {s.Name}").Skip(1), "(", ")")}  \n");
+				string doc = info.GetXmlDocsSummary();
+				builder.AppendLine((doc.Length > 0 ? "##### " : "") + doc);
 			}
 		}
 		return builder.ToString();
 	}
-	private static MethodInfo[] GetExtensionMethods(Type t)
-	{
-		List<Type> AssTypes = new List<Type>();
-
-		foreach (Assembly item in AppDomain.CurrentDomain.GetAssemblies())
-		{
-			AssTypes.AddRange(item.GetTypes());
-		}
-
-		IEnumerable<MethodInfo> query = from type in AssTypes
-					where type.IsSealed && !type.IsGenericType && !type.IsNested
-					from method in type.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
-					where method.IsDefined(typeof(ExtensionAttribute), false)
-					where method.GetParameters()[0].ParameterType == t
-					select method;
-		return query.ToArray();
-	}
+	private static readonly IEnumerable<MethodInfo> exMethods =
+		AppDomain.CurrentDomain.GetAssemblies()
+			.Where(s => !s.GetName().Name.StartsWith("Namotion"))
+			.SelectMany(s => s.GetTypes())
+			.Where(t => t.IsSealed && !t.IsGenericType && !t.IsNested)
+			.SelectMany(s => s.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
+			.Where(m => m.IsDefined(typeof(ExtensionAttribute), false));
+	private static IEnumerable<MethodInfo> GetExtensionMethods(Type t)
+		=> exMethods.Where(m => t.IsAssignableTo(m.GetParameters()[0].ParameterType));
 	public string GenDocMETHODS()
 	{
 		StringBuilder builder = new();
@@ -91,8 +80,8 @@ public sealed class DocType : Type
 			builder.Append("## Methods\n");
 			foreach (MethodInfo info in methods)
 			{
-				builder.Append("#### ");
 				builder.Append($"{new DocType(info.ReturnType).Link} {info.Name}{Strings.FromArray(info.GetParameters().Select(s => $"{(s.IsIn ? "in " : "")}{(s.IsOut ? "out " : "")}{new DocType(s.ParameterType).Link} {s.Name}"), "(", ")")}\n  ");
+				builder.Append("  \n");
 				builder.Append(info.GetXmlDocsSummary() + "  \n");
 			}
 		}
@@ -101,8 +90,8 @@ public sealed class DocType : Type
 			builder.Append("## Static Methods\n");
 			foreach (MethodInfo info in statMethods)
 			{
-				builder.Append("#### ");
 				builder.Append($"{new DocType(info.ReturnType).Link} {info.Name}{Strings.FromArray(info.GetParameters().Select(s => $"{(s.IsIn ? "in " : "")}{(s.IsOut ? "out " : "")}{new DocType(s.ParameterType).Link} {s.Name}"), "(", ")")}\n  ");
+				builder.Append("  \n"); 
 				builder.Append(info.GetXmlDocsSummary() + "  \n");
 			}
 		}
@@ -118,7 +107,7 @@ public sealed class DocType : Type
 		builder.Append("## Constructors\n");
 		foreach (ConstructorInfo info in ctors)
 		{
-			builder.Append("#### new ");
+			builder.Append("new ");
 			builder.Append(NormalizedName);
 			builder.Append(Strings.FromArray(info.GetParameters().Select(s => $"{new DocType(s.ParameterType).Link} {s.Name}"), "(", ")"));
 			builder.Append("  \n");

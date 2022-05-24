@@ -20,6 +20,7 @@ public static class Entry
 			AssemblyParser parser = new(asm);
 			parser.GenDocs();
 		}
+		NamespaceBuilder.AutoGenDocs();
 	}
 	public static void WriteDoc(string content, NamespaceBuilder builder)
 	{

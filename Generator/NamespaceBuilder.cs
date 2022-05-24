@@ -3,19 +3,44 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using NiTiS.Collections.Generic;
 
 namespace Generator;
 
 public sealed class NamespaceBuilder
 {
+	private static readonly Sequence<NamespaceBuilder> namespaces = new();
 	private static readonly File NAMESPACE_TEMPLATE;
 	private readonly List<TypeBuilder> internalTypes = new();
 	private readonly string @namespace;
 	public string Namepsace => @namespace;
-
+	public string Link => $"[{@namespace}]({Entry.SITE_URL}Namespaces/{@namespace})";
+	public static void AutoGenDocs()
+	{
+		foreach (NamespaceBuilder builder in namespaces)
+		{
+			builder.GenDocs();
+		}
+	}
 	public NamespaceBuilder(string @namespace)
 	{
 		this.@namespace = @namespace;
+		namespaces.Add(this);
+	}
+	public string GenInternalNamespaces()
+	{
+		StringBuilder builder = new();
+		bool isTitle = false;
+		foreach (NamespaceBuilder namespaceBuilder in namespaces.Where(s => s.Namepsace.StartsWith(Namepsace) && s.Namepsace != Namepsace))
+		{
+			if (!isTitle)
+			{
+				isTitle = !isTitle;
+				builder.AppendLine("## Internal Namespaces");
+			}
+			builder.Append(namespaceBuilder.Link + "  \n");
+		}
+		return builder.ToString();
 	}
 	public string GenInternalMembers()
 	{
@@ -41,7 +66,8 @@ public sealed class NamespaceBuilder
 		{
 			["FULL_NAME"] = new(@namespace),
 			["SHORT_NAME"] = new(@namespace.Contains('.') ? @namespace.Split('.').Last() : @namespace),
-			["INTERNAL_MEMBERS"] = new(GenInternalMembers)
+			["INTERNAL_MEMBERS"] = new(GenInternalMembers),
+			["INTERNAL_NAMESPACES"] = new(GenInternalNamespaces)
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, this);

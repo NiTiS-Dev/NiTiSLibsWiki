@@ -39,7 +39,6 @@ public sealed class AssemblyParser
 		{
 			NamespaceBuilder namespaceBuilder = new(namespaceAndBuilders.Key);
 			namespaceBuilder.ApplyTypes(namespaceAndBuilders.Value);
-			namespaceBuilder.GenDocs();
 		}
 	}
 }
