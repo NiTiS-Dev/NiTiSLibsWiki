@@ -52,7 +52,7 @@ public sealed class DocType : Type
 			builder.Append("## Extension Methods\n");
 			foreach (MethodInfo info in exMethods)
 			{
-				builder.Append($"{new DocType(info.ReturnType).Link} {info.Name}{Strings.FromArray(info.GetParameters().Select(s => $"{(s.IsIn ? "in " : "")}{(s.IsOut ? "out " : "")}{new DocType(s.ParameterType).Link} {s.Name}").Skip(1), "(", ")")}  \n");
+				builder.Append($"{new DocType(info.ReturnType).Link} {info.DeclaringType.Namespace}.{info.Name}{Strings.FromArray(info.GetParameters().Select(s => $"{(s.IsIn ? "in " : "")}{(s.IsOut ? "out " : "")}{new DocType(s.ParameterType).Link} {s.Name}").Skip(1), "(", ")")}  \n");
 				string doc = info.GetXmlDocsSummary();
 				builder.AppendLine((doc.Length > 0 ? "##### " : "") + doc);
 			}
