@@ -11,7 +11,7 @@ on:
   
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: windows-2019
     steps:
     - uses: actions/checkout@v2
     
@@ -29,7 +29,7 @@ jobs:
         python-version: '3.8'
     - name: Python Update
       run: |
-        python3 -m pip install --upgrade pip
+        python -m pip install --upgrade pip
     - name: Install Python Required Modules
       run: python3 -m pip install -r ./requirements.txt
     - name: Generate docs
