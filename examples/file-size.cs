@@ -1,5 +1,5 @@
 File file = new File("cat.png");
-if (file.Exists())
+if (file.Exists)
 {
 	Console.WriteLine(file.Size.ToString("MB"));
 }
