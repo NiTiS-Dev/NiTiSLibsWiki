@@ -1,0 +1,6 @@
+{
+	"type": "NiTiS.IO.File",
+	"title": "File Size",
+	"description": "Write file size to console",
+	"lang": "C#"
+}

@@ -32,8 +32,8 @@ public sealed class TypeBuilder
 				types.Add(new(typeof(Object)));
 				break;
 			}
-			types.Add(new (now));
-			now = now.BaseType;
+			types.Add(new(now));
+			now = now.BaseType!;
 		}
 		builder.Append("Inheritance " + Strings.FromArray(types.Select(s => s.Link).Reverse(), "", "", " {->} "));
 		return builder.ToString();
@@ -90,7 +90,8 @@ public sealed class TypeBuilder
 			["IMPLEMENTS"] = new(GetImplementsOfType(type)),
 			["CTORS"] = new(type.GenDocCTORS),
 			["ENUM_FIELDS"] = new(type.GetDocENUMS),
-			["EX_METHODS"] = new(() => type.GenDocEXMETHODS()),
+			["EX_METHODS"] = new(type.GenDocEXMETHODS),
+			["EXAMPLES"] = new(type.GenDocEXAMPLES),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
@@ -110,6 +111,7 @@ public sealed class TypeBuilder
 			["PROPS"] = new(() => type.GenDocPROPS()),
 			["METHODS"] = new(() => type.GenDocMETHODS()),
 			["EX_METHODS"] = new(() => type.GenDocEXMETHODS()),
+			["EXAMPLES"] = new(type.GenDocEXAMPLES),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
@@ -132,6 +134,7 @@ public sealed class TypeBuilder
 			["PROPS"] = new(() => type.GenDocPROPS()),
 			["METHODS"] = new(() => type.GenDocMETHODS()),
 			["EX_METHODS"] = new(() => type.GenDocEXMETHODS()),
+			["EXAMPLES"] = new(type.GenDocEXAMPLES),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);
@@ -154,6 +157,7 @@ public sealed class TypeBuilder
 			["PROPS"] = new(() => type.GenDocPROPS()),
 			["METHODS"] = new(() => type.GenDocMETHODS()),
 			["EX_METHODS"] = new(() => type.GenDocEXMETHODS()),
+			["EXAMPLES"] = new(type.GenDocEXAMPLES),
 		};
 		UseKeys(ref temp, keys);
 		Entry.WriteDoc(temp, type);

@@ -8,9 +8,10 @@
 ```c#
 %INCODE
 ```
-#### %INHERITANCE
+%INHERITANCE
 
 <br>
 
 %ENUM_FIELDS  
 %EX_METHODS  
+%EXAMPLES  

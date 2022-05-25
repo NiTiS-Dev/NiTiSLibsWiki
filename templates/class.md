@@ -8,8 +8,8 @@
 ```c#
 %INCODE
 ```
-#### %INHERITANCE  
-#### %IMPLEMENTS
+%INHERITANCE  
+%IMPLEMENTS
 
 <br>
 
@@ -18,3 +18,4 @@
 %FIELDS  
 %METHODS  
 %EX_METHODS  
+%EXAMPLES  

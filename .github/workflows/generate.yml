@@ -11,7 +11,7 @@ on:
   
 jobs:
   deploy:
-    runs-on: windows-2019
+    runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
     
@@ -19,8 +19,13 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '6.x'
+    - name: Check Nuget Locals
+      run: |
+        dotnet nuget locals all -l
+
     - name: Run Pages Generator
       run: |
+        dotnet restore --project Generator/Generator.csproj
         dotnet run --project Generator/Generator.csproj -c Debug --no-logo
     
     - name: Setup Python v3
@@ -29,9 +34,11 @@ jobs:
         python-version: '3.8'
     - name: Python Update
       run: |
-        python -m pip install --upgrade pip
+        python3 -m pip install --upgrade pip
     - name: Install Python Required Modules
-      run: python3 -m pip install -r ./requirements.txt
+      run: |
+        python3 -m pip install -r ./requirements.txt
+
     - name: Generate docs
       run: |
         mkdocs build

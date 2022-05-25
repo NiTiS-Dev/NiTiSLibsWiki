@@ -1,5 +1,6 @@
 ﻿using Namotion.Reflection;
 using NiTiS.Additions;
+using NiTiS.Collections.Generic;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -16,16 +17,16 @@ public sealed class DocType : Type
 	internal readonly Type type;
 	public DocType(Type type) => this!.type = type;
 	public string NormalizedName => GetNormalizedGenericName(this.type);
-	public string Link => type.IsArray ? new DocType(type.GetElementType()).Link + "[]": $"[{NormalizedName}]({GetDocAdress()})";
+	public string Link => type.IsArray ? new DocType(type.GetElementType()!).Link + "[]": $"[{NormalizedName}]({GetDocAdress()})";
 	public string NamespaceLink => $"[{Namespace}]({GetNamespaceDocAdress()})";
 	public string Summary => type.GetXmlDocsSummary();
 	public string GetDocAdress()
 	{
-		if (type.Namespace.StartsWith("System"))
+		if (type.Namespace?.StartsWith("System") ?? false)
 		{
 			return @$"https://docs.microsoft.com/dotnet/api/{(type.Namespace + "." + type.Name.Replace('`', '-')).ToLower()}";
 		} else {
-			return $"{Entry.SITE_URL}{type.Namespace.Replace('.', '/')}/{type.Name.Replace('`', '-')}";
+			return $"{Entry.SITE_URL}{type.Namespace!.Replace('.', '/')}/{type.Name.Replace('`', '-')}";
 		}
 	}
 	public string GetNamespaceDocAdress() => $"{Entry.SITE_URL}Namespaces/{type.Namespace}";
@@ -39,6 +40,23 @@ public sealed class DocType : Type
 		{
 			if (i == 0) builder.Append("## Values\n");
 			builder.Append($"{names[i]} = {Convert.ChangeType(enums.GetValue(i), ((Enum)enums.GetValue(i)).GetTypeCode())}  \n");
+		}
+
+		return builder.ToString();
+	}
+	public string GenDocEXAMPLES()
+	{
+		StringBuilder builder = new();
+
+		bool isTitle = false;
+		foreach (Twosome<Data.ExampleData, string> twosome in Examples.GetByType(this))
+		{
+			if (!isTitle) { isTitle = true; builder.AppendLine("## Examples"); }
+			builder.AppendLine($"### {twosome.Left.Title}");
+			builder.AppendLine($"##### {twosome.Left.Description}");
+			builder.AppendLine($"```{twosome.Left.Language}");
+			builder.AppendLine(twosome.Right);
+			builder.Append($"```  \n");
 		}
 
 		return builder.ToString();
@@ -61,7 +79,7 @@ public sealed class DocType : Type
 	}
 	private static readonly IEnumerable<MethodInfo> exMethods =
 		AppDomain.CurrentDomain.GetAssemblies()
-			.Where(s => !s.GetName().Name.StartsWith("Namotion"))
+			.Where(s => !s.GetName().Name?.StartsWith("Namotion") ?? false)
 			.SelectMany(s => s.GetTypes())
 			.Where(t => t.IsSealed && !t.IsGenericType && !t.IsNested)
 			.SelectMany(s => s.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
@@ -73,7 +91,7 @@ public sealed class DocType : Type
 	{
 		StringBuilder builder = new();
 		IEnumerable<MethodInfo> methods = type.GetMethods(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.NonPublic);
-		methods = methods.Where(s => !s.IsSpecialName);
+		methods = methods.Where(s => !s.IsSpecialName && !s.Name.Contains("__"));
 		IEnumerable<MethodInfo> statMethods = methods.Where(s => s.IsStatic);
 		methods = methods.Where(s => !s.IsStatic);
 		if (methods.Count() > 0)
@@ -81,9 +99,29 @@ public sealed class DocType : Type
 			builder.Append("## Methods\n");
 			foreach (MethodInfo info in methods)
 			{
-				builder.Append($"{new DocType(info.ReturnType).Link} {info.Name}{Strings.FromArray(info.GetParameters().Select(s => $"{(s.IsIn ? "in " : "")}{(s.IsOut ? "out " : "")}{new DocType(s.ParameterType).Link} {s.Name}"), "(", ")")}\n  ");
-				builder.Append("  \n");
-				builder.Append(info.GetXmlDocsSummary() + "  \n");
+				builder.Append($"{new DocType(info.ReturnType).Link} {info.Name}{Strings.FromArray(info.GetParameters().Select(s => $"{(s.IsIn ? "in " : "")}{(s.IsOut ? "out " : "")}{new DocType(s.ParameterType).Link} {s.Name}"), "(", ")")}  \n");
+				string doc = info.GetXmlDocsSummary();
+				if (doc.Length > 0)
+				{
+					builder.Append($"*{doc}*  \n");
+				}
+				foreach (ParameterInfo par in info.GetParameters())
+				{
+					string parDoc = par.GetXmlDocs();
+					if (parDoc.Length > 0)
+					{
+						builder.Append("+ ");
+						if (par.ParameterType.IsGenericMethodParameter)
+						{
+							builder.Append(new DocType(par.ParameterType).Name);
+						} else
+						{
+							builder.Append(new DocType(par.ParameterType).Link);
+						}
+						builder.Append($" *{par.Name}*  - {parDoc}  \n");
+					}
+				}
+				builder.AppendLine();
 			}
 		}
 		if (statMethods.Count() > 0)
@@ -137,7 +175,7 @@ public sealed class DocType : Type
 	public string GenDocFIELDS()
 	{
 		FieldInfo[] fields = type.GetFields();
-		FieldInfo[] parentFields = type.BaseType.GetFields();
+		FieldInfo[] parentFields = type.BaseType!.GetFields();
 		FieldInfo[] newFields = fields.Where(s => !parentFields.Contains(s)).ToArray();
 
 		if (newFields.Length <= 0) return "";
@@ -235,36 +273,40 @@ public sealed class DocType : Type
 	}
 	#region Basic realization
 	public override Assembly Assembly => type.Assembly;
-	public override string AssemblyQualifiedName => type.AssemblyQualifiedName;
-	public override Type BaseType => type.BaseType;
-	public override string FullName => type.FullName;
+	public override string AssemblyQualifiedName => type.AssemblyQualifiedName!;
+	public override Type BaseType => type.BaseType!;
+	public override string FullName => type.FullName!;
 	public override Guid GUID => type.GUID;
 	public override Module Module => type.Module;
-	public override string Namespace => type.Namespace;
+	public override string Namespace => type.Namespace!;
 	public override Type UnderlyingSystemType => type.UnderlyingSystemType;
 	public override string Name => type.Name;
 	public override ConstructorInfo[] GetConstructors(BindingFlags bindingAttr) => type.GetConstructors(bindingAttr);
 	public override object[] GetCustomAttributes(bool inherit) => type.GetCustomAttributes(inherit);
 	public override object[] GetCustomAttributes(Type attributeType, bool inherit) => type.GetCustomAttributes(attributeType, inherit);
-	public override Type GetElementType() => type.GetElementType();
-	public override EventInfo GetEvent(string name, BindingFlags bindingAttr) => type.GetEvent(name, bindingAttr);
+	public override Type? GetElementType() => type.GetElementType();
+	public override EventInfo? GetEvent(string name, BindingFlags bindingAttr) => type.GetEvent(name, bindingAttr);
 	public override EventInfo[] GetEvents(BindingFlags bindingAttr) => GetEvents(bindingAttr);
-	public override FieldInfo GetField(string name, BindingFlags bindingAttr) => type.GetField(name, bindingAttr);
+	public override FieldInfo? GetField(string name, BindingFlags bindingAttr) => type.GetField(name, bindingAttr);
 	public override FieldInfo[] GetFields(BindingFlags bindingAttr) => type.GetFields(bindingAttr);
 	[return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)]
-	public override Type GetInterface(string name, bool ignoreCase) => type.GetInterface(name, ignoreCase);
+	public override Type? GetInterface(string name, bool ignoreCase) => type.GetInterface(name, ignoreCase);
 	public override Type[] GetInterfaces() => type.GetInterfaces();
 	public override MemberInfo[] GetMembers(BindingFlags bindingAttr) => type.GetMembers(bindingAttr);
 	public override MethodInfo[] GetMethods(BindingFlags bindingAttr) => type.GetMethods(bindingAttr);
-	public override Type GetNestedType(string name, BindingFlags bindingAttr) => type.GetNestedType(name, bindingAttr);
+	public override Type? GetNestedType(string name, BindingFlags bindingAttr) => type.GetNestedType(name, bindingAttr);
 	public override Type[] GetNestedTypes(BindingFlags bindingAttr) => type.GetNestedTypes(bindingAttr);
 	public override PropertyInfo[] GetProperties(BindingFlags bindingAttr) => type.GetProperties(bindingAttr);
+#pragma warning disable CS8765 // Допустимость значений NULL для типа параметра не соответствует переопределенному элементу (возможно, из-за атрибутов допустимости значений NULL).
+#pragma warning disable CS8610 // Допустимость значения NULL для ссылочных типов в типе параметра не совпадает с переопределенным членом.
 	public override object InvokeMember(string name, BindingFlags invokeAttr, Binder binder, object target, object[] args, ParameterModifier[] modifiers, CultureInfo culture, string[] namedParameters) => type.InvokeMember(name, invokeAttr, binder, target, args);
+#pragma warning restore CS8610 // Допустимость значения NULL для ссылочных типов в типе параметра не совпадает с переопределенным членом.
 	public override bool IsDefined(Type attributeType, bool inherit) => type.IsDefined(type, inherit);
 	protected override TypeAttributes GetAttributeFlagsImpl() => type.GetTypeInfo().Attributes;
 	protected override ConstructorInfo GetConstructorImpl(BindingFlags bindingAttr, Binder binder, CallingConventions callConvention, Type[] types, ParameterModifier[] modifiers) => throw new NotImplementedException();
 	protected override MethodInfo GetMethodImpl(string name, BindingFlags bindingAttr, Binder binder, CallingConventions callConvention, Type[] types, ParameterModifier[] modifiers) => throw new NotImplementedException();
 	protected override PropertyInfo GetPropertyImpl(string name, BindingFlags bindingAttr, Binder binder, Type returnType, Type[] types, ParameterModifier[] modifiers) => throw new NotImplementedException();
+#pragma warning restore CS8765 // Допустимость значений NULL для типа параметра не соответствует переопределенному элементу (возможно, из-за атрибутов допустимости значений NULL).
 	protected override bool HasElementTypeImpl() => throw new NotImplementedException();
 	protected override bool IsArrayImpl() => throw new NotImplementedException();
 	protected override bool IsByRefImpl() => throw new NotImplementedException();

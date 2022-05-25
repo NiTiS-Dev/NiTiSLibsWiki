@@ -8,10 +8,11 @@
 ```c#
 %INCODE
 ```
-#### %IMPLEMENTS
+%IMPLEMENTS
 
 <br>
 
 %PROPS  
 %METHODS  
 %EX_METHODS  
+%EXAMPLES  
