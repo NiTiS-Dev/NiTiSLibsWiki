@@ -52,8 +52,8 @@ public sealed class DocType : Type
 		foreach (Twosome<Data.ExampleData, string> twosome in Examples.GetByType(this))
 		{
 			if (!isTitle) { isTitle = true; builder.AppendLine("## Examples"); }
-			builder.AppendLine($"### {twosome.Left.Title}");
-			builder.AppendLine($"##### {twosome.Left.Description}");
+			builder.AppendLine($"### {twosome.Left.Title}  \n");
+			builder.AppendLine($"{twosome.Left.Description}  \n");
 			builder.AppendLine($"```{twosome.Left.Language}");
 			builder.AppendLine(twosome.Right);
 			builder.Append($"```  \n");
