@@ -25,7 +25,7 @@ jobs:
 
     - name: Run Pages Generator
       run: |
-        dotnet restore --source Generator/Generator.csproj
+        dotnet restore
         dotnet run --project Generator/Generator.csproj -c Debug --no-logo
     
     - name: Setup Python v3
