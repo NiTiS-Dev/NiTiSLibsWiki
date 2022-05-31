@@ -1059,8 +1059,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    
+  <a href="#presentation-of-some-directory" class="md-nav__link">
+    Presentation of some directory
   </a>
   
 </li>
@@ -2060,8 +2060,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    
+  <a href="#presentation-of-some-directory" class="md-nav__link">
+    Presentation of some directory
   </a>
   
 </li>
@@ -2110,7 +2110,7 @@
 <h2 id="definition">Definition</h2>
 <h6 id="namepsace-nitisio">Namepsace: <a href="https://nitis-dev.github.io/NiTiSLibsWiki/Namespaces/NiTiS.IO">NiTiS.IO</a></h6>
 <h6 id="assembly-nitisiodll">Assembly: NiTiS.IO.dll</h6>
-<h4 id="_1"></h4>
+<h4 id="presentation-of-some-directory">Presentation of some directory</h4>
 <p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C#</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">public</span><span class="w"> </span><span class="k">sealed</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Directory</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 </code></pre></div></td></tr></table></div>
 Inheritance <a href="https://docs.microsoft.com/dotnet/api/system.object">Object</a> &#8594; <a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/Path">Path</a> &#8594; <a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/Directory">Directory</a><br />
@@ -2141,7 +2141,7 @@ Implements <a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/IStorageE
 <tr>
 <td align="center"><a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/Directory">Directory</a></td>
 <td align="center">Parent</td>
-<td align="left"></td>
+<td align="left">Directory where located this directory</td>
 </tr>
 <tr>
 <td align="center"><a href="https://docs.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
@@ -2171,15 +2171,26 @@ Implements <a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/IStorageE
 </tbody>
 </table>
 <h2 id="methods">Methods</h2>
-<p><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> Rename(<a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> newName, <a href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a> overwrite)  </p>
-<p><a href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[] Separate()  </p>
-<p><a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/Directory">Directory</a>[] GetNearbyDirectories(<a href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a> selfInclude)  </p>
-<p><a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/File">File</a>[] GetFiles()  </p>
-<p><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> Create()  </p>
-<p><a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/Directory">Directory</a>[] GetDirectories()  </p>
+<p><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> Rename(<a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> newName, <a href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a> overwrite)<br />
+<em>Renaming the directory</em><br />
++ <a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> <em>newName</em>  - New name<br />
++ <a href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a> <em>overwrite</em>  - Should I delete the directory with the same name  </p>
+<p><a href="https://docs.microsoft.com/dotnet/api/system.string">String</a>[] Separate()<br />
+<em>Returns path separated by folders</em>  </p>
+<p><a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/Directory">Directory</a>[] GetNearbyDirectories(<a href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a> selfInclude)<br />
+<em>Get other folders from this directory</em><br />
++ <a href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a> <em>selfInclude</em>  - Include this directory  </p>
+<p><a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/File">File</a>[] GetFiles()<br />
+<em>Get internal files</em>  </p>
+<p><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> Create()<br />
+<em>Create dictonary if not exists</em>  </p>
+<p><a href="https://nitis-dev.github.io/NiTiSLibsWiki/NiTiS/IO/Directory">Directory</a>[] GetDirectories()<br />
+<em>Get internal directories</em>  </p>
 <p><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> ThrowIfNotExists()  </p>
-<p><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> Delete(<a href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a> recursive)  </p>
-<p><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> Delete()  </p>
+<p><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> Delete(<a href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a> recursive)<br />
+<em>Delete current file from storage</em>  </p>
+<p><a href="https://docs.microsoft.com/dotnet/api/system.void">Void</a> Delete()<br />
+<em>Delete current file from storage</em>  </p>
 <p><a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> ToString()  </p>
 <p><a href="https://docs.microsoft.com/dotnet/api/system.string">String</a> GetDebuggerDisplay()  </p>
 
