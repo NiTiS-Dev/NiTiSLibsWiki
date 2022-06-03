@@ -1,4 +1,4 @@
-mkdocs
-mkdocs-rtd-dropdown
-mkdocs-material
+mkdocs=1.3.0
+mkdocs-rtd-dropdown=1.0.2
+mkdocs-material=8.2.15
 mkdocs-git-revision-date-plugin
