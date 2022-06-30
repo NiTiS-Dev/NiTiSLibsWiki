@@ -6,12 +6,9 @@ site_url: https://nitis-dev.github.io/NiTiSLibsWiki/
 repo_name: NiTiSCore Wiki
 repo_url: https://github.com/NiTiS-Dev/NiTiSLibsWiki
 
-edit_uri: "https://github.com/NiTiS-Dev/NiTiSLibsWiki/edit/"
+edit_uri: "https://github.com/NiTiS-Dev/NiTiSLibsWiki/edit/singleton"
 
 copyright: Copyright &copy; 2022 NiTiS-Dev
-
-plugins:
-  - git-revision-date
 
 theme:
   name: material
