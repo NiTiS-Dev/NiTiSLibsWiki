@@ -11,7 +11,7 @@ where you can make your changes and submit them for approval (doesnt works with 
 + [Releases](https://github.com/NiTiS-Dev/NiTiSCore/releases)
 ## Usage in project
 ```xml
-<Project Sdk="Microsoft.NET.Sdk">
+<Project>
   ...
   <ItemGroup>
     <!-- Usage all NiTiS modules -->
